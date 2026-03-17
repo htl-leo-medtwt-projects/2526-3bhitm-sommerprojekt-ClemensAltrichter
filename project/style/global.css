@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: high;
+    src: url(../resource/font/HighriseFont-Bold-Demo.otf);
+}
+@font-face {
+    font-family: milker;
+    src: url(../resource/font/Milker.otf);
+}
+@font-face {
+    font-family: miriam;
+    src: url(../resource/font/MiriamLibre-VariableFont_wght.ttf);
+}
+
+:root{
+    --primary-color: #060606;
+    --secondary-color: #f2f4f3;
+    --accent-color: #c52720;
+    --greyscale-color: #33363f;
+}
