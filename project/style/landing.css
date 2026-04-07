@@ -9,11 +9,24 @@
 h1{
     font-family: high;
 }
-
 body{
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
+
+
+.hl{
+    background-color: var(--secondary-color);
+    width: 90%;
+    height: 2px;
+    margin: auto;
+    margin: 5vh;
+}
+#contentBox .hl{
+    transform: translateX(-0.5vh);
+    
+}
+
 
 #headerBox{
 width: 100vw;
@@ -103,5 +116,33 @@ height: min-content;
     line-height: 1.5;
     margin: auto;
     margin-bottom: 2vh;
+}
+
+#contentBox{
+    padding: 1vh;
+    font-family: miriam;
+
+}
+#contentBox h1{
+    font-size: 30vw;
+    text-align: center; 
+    margin-bottom: 5vh;
+}
+#posterBox{
+    background-image: url(../resource/img/cinemaSeats.png);
+   
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 70vw;
+    height: 50vh;
+    margin: auto;
+    font-family: milker;
+    font-size: 9vw;
+    word-spacing: 5vw;
+    padding: 1vh;
+}
+#optionsExplanaitionBox{
+    width: 50%;
+    margin: auto;
 }
 
