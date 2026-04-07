@@ -2,11 +2,106 @@
     font-family: high;
     src: url(../resource/font/HighriseFont-Bold-Demo.otf);
 }
+*,html{
+    padding: 0;
+    margin:0;
+}
 h1{
     font-family: high;
 }
 
 body{
-    background-color: var(--secondary-color);
-    background-color: red;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
+
+#headerBox{
+width: 100vw;
+height: 90vh;
+}
+/*Optional background gradient Animation*/
+
+#headerTitleBox{
+    margin: 0;
+    width: 100%;
+height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+#headerBox h1{
+    margin: 0;
+    height: min-content;
+    padding: 0;
+}
+#cineTxt{
+    font-size: 80vw;
+}
+#matchTxt{
+    font-size: 50vw;
+    transform: translateY(-50px);
+}
+
+
+
+#headerDescBox{
+    font-family: miriam;
+    text-align: center;
+}
+#headerDescBigger{
+    font-size:larger;
+}
+
+
+
+#headerButtonBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10vw;
+    margin-top: 5vh;
+}
+.headerBTN{
+    width: 30vw;
+    height: 10vw;
+    background-color: var(--accent-color);
+    display: flex;
+    border-radius: 5px;
+    font-size: larger;
+    font-family: milker;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#registerBTN{
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+
+
+#tutorialBox{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding-bottom: 5vh;
+
+}
+#tutorialBox h1{
+    font-family: milker;
+    margin-left: 1vw;
+    margin-bottom: 5vh;
+}
+#tutorialBox p{
+    font-family: milker;
+    margin-left: 1vw;
+    width: 80%;
+    line-height: 1.5;
+    margin: auto;
+    margin-bottom: 2vh;
+}
+
