@@ -1,0 +1,12 @@
+@font-face {
+    font-family: high;
+    src: url(../resource/font/HighriseFont-Bold-Demo.otf);
+}
+h1{
+    font-family: high;
+}
+
+body{
+    background-color: var(--secondary-color);
+    background-color: red;
+}
