@@ -19,12 +19,8 @@ body{
     background-color: var(--secondary-color);
     width: 90%;
     height: 2px;
-    margin: auto;
-    margin: 5vh;
-}
-#contentBox .hl{
-    transform: translateX(-0.5vh);
-    
+
+    margin: 5vh auto;
 }
 
 
@@ -105,8 +101,9 @@ height: min-content;
 
 }
 #tutorialBox h1{
+    margin-top: 2vh;
     font-family: milker;
-    margin-left: 1vw;
+    margin-left: 1vh;
     margin-bottom: 5vh;
 }
 #tutorialBox p{
@@ -146,3 +143,27 @@ height: min-content;
     margin: auto;
 }
 
+
+#sideScrollBox{
+   
+    display: grid;
+    grid-template-columns: repeat(4, 70vw);
+    
+    gap: 3vh;
+    overflow-x: scroll;
+    padding: 1vh;
+    width: 100vw;
+}
+.sideScrollOption{
+
+    width: 70vw;
+
+    height: 70vw;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
