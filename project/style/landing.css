@@ -5,6 +5,7 @@
 *,html{
     padding: 0;
     margin:0;
+     overflow-x: hidden;
 }
 h1{
     font-family: high;
@@ -12,6 +13,7 @@ h1{
 body{
     background-color: var(--primary-color);
     color: var(--secondary-color);
+   
 }
 
 
@@ -152,18 +154,33 @@ height: min-content;
     gap: 3vh;
     overflow-x: scroll;
     padding: 1vh;
-    width: 100vw;
+
 }
 .sideScrollOption{
 
     width: 70vw;
 
-    height: 70vw;
+    height: 60vw;
     background-color: var(--accent-color);
-    border-radius: 5px;
+    border-radius: 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 5vw;
     align-items: center;
+}
+.sideScrollOption h2{
+    font-family: milker;
+    letter-spacing: 5px;
+        font-size: 2em;
+}
+#o1{
+    background-color: var(--primary-color);
+    border: var(--secondary-color) 1px solid;
+    color: var(--secondary-color);
+}
+#o2{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
