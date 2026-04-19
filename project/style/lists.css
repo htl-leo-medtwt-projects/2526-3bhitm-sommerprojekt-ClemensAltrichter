@@ -8,7 +8,9 @@ body{
     color: var(--secondary-color);
    
 }
-
+a{
+    text-decoration: none;
+}
 #header{
     width: 100vw;
 height: 20vh;
@@ -27,6 +29,8 @@ height: 20vh;
     gap: 5vh;
 }
 .list{
+    text-decoration: none;
+    color: var(--secondary-color);
     margin: 0 auto;
     width: 70vw;
     height: 50vw;
@@ -134,4 +138,5 @@ margin: 3vh auto;
     text-decoration: underline;
     text-align: center;
     font-family: miriam;
+    cursor: pointer;
 }

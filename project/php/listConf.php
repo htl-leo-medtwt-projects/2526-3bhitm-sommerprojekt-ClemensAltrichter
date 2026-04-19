@@ -16,11 +16,13 @@ if(isset($_GET['action']) && ! empty($_GET['action'])){
             header("Location: ../pages/lists.html");
         }else{
            
-            header("Location: ../pages/lists.html");
+           
              echo "Error creating List";
             //TODO: Fehlermeldung
         }
     }
+     header("Location: ../pages/lists.html");
+     //TODO: Fehlermeldung
 
     $conn -> close();
 

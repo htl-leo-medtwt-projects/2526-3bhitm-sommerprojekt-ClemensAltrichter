@@ -1,0 +1,50 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+#header{
+    width: 100vw;
+height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: high;
+    font-size: 15vw;
+}
+
+#confBox{
+    width: 100%;
+
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#deleteBTN{
+   padding: 1vw;
+   width: 90vw;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: milker;
+    font-size: 5vw;
+   
+    border-radius: 10px;
+
+}
+

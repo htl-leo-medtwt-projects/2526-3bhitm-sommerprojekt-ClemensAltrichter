@@ -15,10 +15,12 @@ function getAllLists(){
         data.data.forEach(list => {
             console.log(list);
              s += `
-            <div class="list" id="list${list.id}">
+             <a href="../php/listDetail.php?listID=${list.listID}">
+            <div class="list" id="list${list.listID}">
             <img src="../resource/img/eye_icon.png" alt="eye icon" class="eyeIcon">
             <h1>${list.name}</h1>
             </div>
+            </a>
             `;
         })
         listContainer.innerHTML = s;
