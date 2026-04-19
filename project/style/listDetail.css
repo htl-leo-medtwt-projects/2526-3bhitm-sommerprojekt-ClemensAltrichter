@@ -48,3 +48,21 @@ height: 20vh;
 
 }
 
+.movieBox{
+   width: 80vw;
+   margin: 9vh auto;
+background-color: var(--primary-color);
+border-radius: 15px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+   font-family: miriam;
+}
+.movieBox h2{
+    font-size: 7vw;
+    margin-bottom: 2vh;
+    font-family: milker;
+}
+.movieBox img{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}

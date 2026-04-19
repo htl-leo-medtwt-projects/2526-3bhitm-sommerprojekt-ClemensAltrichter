@@ -14,6 +14,14 @@ if(isset($_GET['listID']) && ! empty($_GET['listID'])){
 
         $listName = $data['name'];
 
+        $query = "SELECT * FROM movie where movieID IN (SELECT movieID FROM listmovie WHERE listID = '$listID')";
+        if($conn -> query($query)){
+            $result = $conn -> query($query);
+            $movies = $result -> fetch_all(MYSQLI_ASSOC);
+
+            //displayAllMovies();
+        }
+
 
     if(isset($_GET['delete']) && $_GET['delete'] == "true"){
         
@@ -37,6 +45,18 @@ if(isset($_GET['listID']) && ! empty($_GET['listID'])){
     }
     }
 
+    function displayAllMovies(){
+        global $movies;
+
+        for($i = 0; $i < count($movies); $i++){
+            echo "<div class='movieBox'>";
+            echo "<img src='" . $movies[$i]['poster'] . "' alt='Poster'>";
+            echo "<h2>" . $movies[$i]['title'] . "</h2>";
+           // echo "<p>" . $movies[$i]['overview'] . "</p>";
+            echo "</div>";
+        }
+
+    }
 
 
 
@@ -78,6 +98,7 @@ if(isset($_GET['listID']) && ! empty($_GET['listID'])){
 
     <div id="contentBox">
 
+    <?php displayAllMovies();?>
 
         </div>
     
