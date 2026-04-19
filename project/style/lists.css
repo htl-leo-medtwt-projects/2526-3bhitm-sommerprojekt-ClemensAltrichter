@@ -54,9 +54,6 @@ height: 20vh;
 */
 margin: 3vh auto;
 
-
-
-
  width: 15vw;
     height: 15vw;
     background-color: var(--primary-color);
@@ -65,4 +62,76 @@ margin: 3vh auto;
     box-shadow: 0px 0px 10px 2px black;
     justify-content: center;
     align-items: center;
+}
+
+#formBox{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 20vh;
+    background-color: var(--primary-color);
+    box-shadow: 0px 0px 10px 2px black;
+    border-radius: 15px;
+    display: none;
+    padding: 3vh;
+    /*
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    */
+}
+#formBox h1{
+    font-family: milker;
+    font-size: 10vw;
+}
+#formBox form{
+    margin-top: 5vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+#formBox input{
+    width: 50vw;
+    height: 5vh;
+    border-radius: 10px;
+    background-color: var(--greyscale-color);
+    border: none;
+    padding: 0 1vw;
+    color: var(--secondary-color);
+    font-size: 6vw;
+    font-family: miriam;
+   box-shadow:  0px 0px 5px 1px black;
+}
+    
+#formBox input:focus {
+  outline: none;
+  border: 2px solid var(--secondary-color);
+}
+
+#formBox button{
+    padding: 0 2vw;
+    height: 5vh;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--secondary-color);
+    font-family: milker;
+    font-size: 1.5vw;
+    cursor: pointer;
+     box-shadow:  0px 0px 5px 1px black;
+}
+#formBox button img{
+    width: 3vw;
+}
+#cancelBTN{
+    margin-top: 1vh;
+    color: var(--greyscale-color);
+    text-decoration: underline;
+    text-align: center;
+    font-family: miriam;
 }
