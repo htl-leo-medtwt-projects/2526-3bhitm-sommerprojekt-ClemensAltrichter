@@ -17,13 +17,7 @@ body{
 }
 
 
-.hl{
-    background-color: var(--secondary-color);
-    width: 90%;
-    height: 2px;
 
-    margin: 5vh auto;
-}
 
 
 #headerBox{
@@ -183,4 +177,9 @@ height: min-content;
 #o2{
     background-color: var(--secondary-color);
     color: var(--primary-color);
+}
+
+#o3{
+    color: var(--primary-color);
+    background-color: var(--greyscale-color);
 }

@@ -20,3 +20,14 @@
     --greyscale-color: #33363f;
     
 }
+
+.hl{
+    background-color: var(--secondary-color);
+    width: 90%;
+    height: 2px;
+
+    margin: 5vh auto;
+}
+.headerHL{
+    margin-top: 1vh ;
+}
