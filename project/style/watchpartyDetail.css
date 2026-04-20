@@ -28,14 +28,11 @@ a{
 
 #confBox{
     width: 100%;
-
-   
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 #deleteBTN{
    padding: 1vw;
    width: 90vw;
@@ -50,27 +47,58 @@ a{
     border-radius: 10px;
 
 }
-#contentBox{
-    /*background-image: radial-gradient( var(--greyscale-color),  var(--primary-color));
-    background: conic-gradient(from 255deg at 40% 120%, #060606, #060606, #070707, #090909, #0d0e0f, #151619, #212228, #292c33, #2f323a, #32353d, #33363f, #33363f);
-    background-attachment: fixed;*/
+.subHeader{
+    font-family: milker;
+    font-size: 5vw;
+    margin-bottom: 3vh;
+    color: var(--secondary-color);
 }
 
-.movieBox{
-   width: 70vw;
-   margin: 9vh auto;
-background-color: var(--primary-color);
-border-radius: 15px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-   font-family: miriam;
+#contentBox{
+    width: 90%;
+    margin: 0  auto;
+    color: var(--greyscale-color);
 }
-.movieBox h2{
-    font-size: 7vw;
-    margin-bottom: 2vh;
-    font-family: milker;
-}
-.movieBox img{
-    display: block;
-    width: 100%;
+#chosenMovieBox{
+    width: 70vw;
     margin: 0 auto;
+    margin-bottom: 5vh;
+    font-family: miriam;
 }
+#chosenMovieBox img{
+    width: 100%;
+    border-radius: 15px;
+}
+
+#userContainer{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 1vh;
+
+width: 100%;
+height: min(auto,30vh);
+margin-bottom: 5vh;
+
+}
+.userBox{
+    font-family: milker;
+    width: 90%;
+    margin: 0 auto;
+    border: var(--greyscale-color) 1px solid;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 2vw; 
+    padding: 1vw;
+}
+.avatar{
+    width: 10vw;
+    margin-left: 3vw;
+}
+

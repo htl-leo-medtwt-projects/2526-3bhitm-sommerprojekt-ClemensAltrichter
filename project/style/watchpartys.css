@@ -1,0 +1,97 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+a{
+    text-decoration: none;
+}
+#header{
+    width: 100vw;
+height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: high;
+    font-size: 12vw;
+}
+#addBox{
+    width: 90vw;
+    margin: 0 auto;
+    /*border: 2px solid var(--secondary-color);*/
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+#addBox p{
+    font-family: milker;
+    font-size: 8vw;
+    text-align: left;
+    width: min-content;
+}
+
+#contentBox{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    margin-bottom: 5vh;
+}
+
+.watchparty{
+    font-family: milker;
+    border-radius: 15px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+
+}
+.prevPoster{
+    width: 45vw;
+    height: 30vh;
+}
+.prevPoster img{
+    height: 100%;
+    display: block;
+
+}
+.prevInfo{
+    width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+   font-family: milker;
+    padding: 3vw;
+}
+.nameBox{
+    font-family: milker;
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* max 2 Zeilen */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /*hilfe von KI um nicht ganzen text anzeigen zu müssen*/
+}
+.dateBox{
+    font-family: miriam;
+    font-size: 4vw;
+}
+.titleBox{
+    font-family: miriam;
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* max 2 Zeilen */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.barcodeBox{
+    margin: 0 auto;
+}
