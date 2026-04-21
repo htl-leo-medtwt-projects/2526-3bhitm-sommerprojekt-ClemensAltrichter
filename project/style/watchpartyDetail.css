@@ -51,13 +51,13 @@ a{
     font-family: milker;
     font-size: 5vw;
     margin-bottom: 3vh;
-    color: var(--secondary-color);
+    color: var(--greyscale-color);
 }
 
 #contentBox{
     width: 90%;
     margin: 0  auto;
-    color: var(--greyscale-color);
+    color: var(--secondary-color);
 }
 #chosenMovieBox{
     width: 70vw;
