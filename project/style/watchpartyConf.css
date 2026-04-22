@@ -1,0 +1,133 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+a{
+    text-decoration: none;
+}
+#header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: high;
+    font-size: 10vw;
+}
+#header h1{
+    margin-top: 1vh;
+}   
+
+#contentBox{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+.subHeader{
+    font-family: milker;
+    font-size: 5vw;
+    margin-bottom: 3vh;
+    color: var(--greyscale-color);
+}
+
+input{
+    width: 90%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color-color);
+    padding: 2vw;
+    border-radius: 15px;
+    font-family: milker;
+    font-size: larger;
+    margin: 0 auto;
+}
+input::placeholder{
+    color: var(--greyscale-color);
+}
+input:focus {
+  outline: none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 4 5px black;
+}
+
+#infoInputBox{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+#inviteContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+#friendContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+#searchUser{
+    margin: 0 auto;
+    margin-bottom: 2vh;
+}
+.userBox{
+    width: 90vw;
+    margin: 0 auto;
+    font-family: milker;
+    color:var(--secondary-color);
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid var(--secondary-color);
+    border-radius: 15px;
+
+}
+.userBox img{
+    width: 10vw;
+    border-radius: 50%;
+}
+.inviteBox{
+    width:10vw;
+    height: 8vw;
+    background-color: var(--accent-color);
+    border-radius: 15px;
+}
+
+#listBox{
+    width: 90%;
+    padding:2vw;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    border: 2px solid var(--secondary-color);
+    font-family: milker;
+
+}
+.listBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+    align-items: center;
+}
+.listBox h2{
+    width: min-content;
+}
+.listCheckBox{
+    width: 10vw;
+    height: 10vw;
+    border-radius: 15px;
+    border: 1px solid var(--secondary-color);
+}

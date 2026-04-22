@@ -83,7 +83,7 @@ function displayAllUsers(){
         <h1><?php  echo $watchpartyName;?></h1>
     </div>
 </a>
-    <div class="hl" ></div>
+    <div class="hl headerHL" ></div>
 
     <div id="confBox">
 <a href="watchpartyDetail.php?watchpartyID=<?php echo $watchpartyID;?>&delete=true">
