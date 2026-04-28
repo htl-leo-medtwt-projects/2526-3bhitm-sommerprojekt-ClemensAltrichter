@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cineMatch</title>
+
+       <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/watchpartyConf.css">
+
+    <script src="../js/watchpartyConf.js" defer></script>
+</head>
+<body>
+
+<div id="header">
+    <h1>New Watchparty</h1>
+</div>
+    
+<div class="hl headerHL"></div>
+
+<div id="contentBox">
+
+
+
+    <form action="watchpartyConf.php" method="POST">
+
+    <div class="subHeader">
+        Infos
+    </div>
+
+    <div id="infoInputBox">
+        <input type="text" name="name" id="nameInput" placeholder="Name of the Watchparty" required>
+        <input type="text" name="location" id="locationInput" placeholder="Where will you watch">
+
+    </div>
+
+    <div class="hl headerHL"></div>
+
+<div class="subHeader">
+        Friends
+    </div>
+    <div id="inviteContainer">
+        
+        <div id="friendContainer">
+       <!-- <?php  display4Users();?>-->
+    </div>
+
+    <input type="text" name="searchUser" id="searchUser" placeholder="Search for Users to invite">
+
+    <div class="hl headerHL"></div>
+
+    </div>
+
+
+    <div class="subHeader">
+        Select Lists
+    </div>
+    <div id="listBox">
+       <!-- <?php displayAllLists();?> -->
+    </div>
+
+
+    <div id="buttonContainer">
+        <input type="button" value="cancel" id="cancelButton" onclick="window.location.href = 'watchpartys.html';">
+        <button type="submit" value="submit" id="submitButton" onclick="submitWatchparty()">submit</button>
+    </div>
+
+    </form>
+
+
+
+</div>
+
+</body>
+</html>

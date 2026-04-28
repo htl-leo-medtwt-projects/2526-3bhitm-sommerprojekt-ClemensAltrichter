@@ -1,6 +1,7 @@
 <?php
 require_once "./dbConnection.php";
 
+$allUsedLists = [];
 
 
  $query = "SELECT * FROM user where userID IN 
@@ -13,15 +14,34 @@ require_once "./dbConnection.php";
             $users = $result -> fetch_all(MYSQLI_ASSOC);
         }
 
+
+        
+
+
 $query = "SELECT * FROM list where userID = 1"; // hier muss die userID der eingeloggten Person rein
 
         if($conn -> query($query)){
             $result = $conn -> query($query);
             $lists = $result -> fetch_all(MYSQLI_ASSOC);
         }
+
+
+
+        if(isset($_GET['listID']) && ! empty($_GET['listID'])){
+            $listID = $_GET['listID'];
+
+            $allUsedLists[count($allUsedLists)] = $listID;
+           
+        }
    
 
+if(isset($_GET['getLists']) && $_GET['getLists'] == "true"){
+            echo json_encode($lists);
+        }
 
+        if(isset($_GET['getFriends']) && $_GET['getFriends'] == "true"){
+            echo json_encode($users);
+        }
     
 
 
@@ -55,76 +75,14 @@ function displayAllLists(){
     for($i = 0; $i < count($lists); $i++){
         echo "<div class='listBox'>";
         echo "<h2>" . $lists[$i]['name'] . "</h2>";
-        echo "<div class='listCheckBox'></div>";
+        echo "<div class='listCheckBox'  onclick='addListToWatchparty( ". $lists[$i]['listID'] .", this )'></div>";
         echo "</div>";
     }
+
+    
 }
+
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cineMatch</title>
-
-       <link rel="stylesheet" href="../style/global.css">
-    <link rel="stylesheet" href="../style/watchpartyConf.css">
-</head>
-<body>
-
-<div id="header">
-    <h1>New Watchparty</h1>
-</div>
-    
-<div class="hl headerHL"></div>
-
-<div id="contentBox">
-
-
-
-    <form action="watchpartyConf.php" method="POST">
-
-    <div class="subHeader">
-        Infos
-    </div>
-
-    <div id="infoInputBox">
-        <input type="text" name="name" id="nameInput" placeholder="Name of the Watchparty" required>
-        <input type="text" name="location" id="locationInput" placeholder="Where will you watch">
-
-    </div>
-
-    <div class="hl headerHL"></div>
-
-    <div id="inviteContainer">
-        <input type="text" name="searchUser" id="searchUser" placeholder="Search for Users to invite">
-        
-        
-        <div id="friendContainer">
-        <?php  display4Users();?>
-    </div>
-    <div class="hl headerHL"></div>
-
-    </div>
-
-    <div class="subHeader">
-        Select Lists
-    </div>
-    <div id="listBox">
-        <?php displayAllLists();?>
-    </div>
-
-
-
-
-
-    </form>
-
-
-
-</div>
-
-</body>
-</html>

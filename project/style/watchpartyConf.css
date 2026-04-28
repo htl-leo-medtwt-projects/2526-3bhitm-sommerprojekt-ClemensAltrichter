@@ -43,7 +43,7 @@ input{
     color: var(--secondary-color-color);
     padding: 2vw;
     border-radius: 15px;
-    font-family: milker;
+    font-family: miriam;
     font-size: larger;
     margin: 0 auto;
 }
@@ -77,7 +77,7 @@ input:focus {
 }
 #searchUser{
     margin: 0 auto;
-    margin-bottom: 2vh;
+    margin-top: 2vh;
 }
 .userBox{
     width: 90vw;
@@ -130,4 +130,32 @@ input:focus {
     height: 10vw;
     border-radius: 15px;
     border: 1px solid var(--secondary-color);
+}
+
+
+#buttonContainer{
+    margin: 5vh auto;
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#cancelButton, #submitButton{
+    width: 40vw;
+    padding: 2vw;
+    border-radius: 15px;
+    font-family: high;
+    font-size: 10vw;
+    border: none;
+    color: var(--secondary-color);
+}
+#cancelButton{
+        background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+}
+#submitButton{
+    background-color: var(--accent-color);
+
 }
