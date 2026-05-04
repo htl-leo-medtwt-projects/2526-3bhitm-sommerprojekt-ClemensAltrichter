@@ -17,7 +17,10 @@ body{
 }
 
 
-
+a{
+    text-decoration: none;
+    counter-reset: var(--secondary-color);
+}
 
 
 #headerBox{
@@ -81,6 +84,9 @@ height: min-content;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#loginBTN{
+    color: var(--secondary-color);
 }
 #registerBTN{
     background-color: transparent;

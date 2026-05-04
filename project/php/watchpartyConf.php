@@ -42,7 +42,13 @@ if(isset($_GET['getLists']) && $_GET['getLists'] == "true"){
         if(isset($_GET['getFriends']) && $_GET['getFriends'] == "true"){
             echo json_encode($users);
         }
-    
+
+
+
+
+        if(isset($_POST['submit'])){
+
+        }
 
 
 
@@ -53,13 +59,12 @@ function display4Users(){
    // $friends = getUsers();
    global $users;
 
-   if(count($users) < 4){
+   if(count($users) < 1){
     echo "<p id='noFriends'>No friends to invite yet</p>";
    }
 
 
-
-    for($i = 0; $i < 4; $i++){
+    for($i = 0; $i < min(4,count($users)); $i++){
         echo "<div class='userBox'>";
         echo "<img class='avatar' src='../resource/img/" . $users[$i]['avatar'] . "' alt='Poster'>";
         echo "<h2>" . $users[$i]['username'] . "</h2>";

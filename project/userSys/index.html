@@ -10,20 +10,17 @@
 </head>
 <body>
 
-<nav>
-  <div class="logo">Reel<span>ect</span></div>
-  <div class="user-badge" id="userBadge">
-    <div class="avatar-circle" id="navAvatar"></div>
-    <span class="username-display" id="navUsername"></span>
-    <button class="btn-logout" onclick="logout()">Abmelden</button>
-  </div>
-</nav>
+  <div id="header">
+        <h1>Not Logged in</h1>
+    </div>
+    <div class="hl headerHL" ></div>
+
+
 
 <main>
 
   <!-- AUTH BOX (logged out) -->
   <div class="auth-box" id="authBox">
-    <h2>Willkommen</h2>
     <p>Melde dich an oder erstelle einen Account.</p>
 
     <div class="tabs">
@@ -184,7 +181,8 @@ async function checkSession() {
   const res = await api({ action: 'check' });
 
   if (res.loggedIn) {
-    showLoggedIn(res);
+    //showLoggedIn(res);
+    window.location.href = '../php/Profile.php';
   } else {
     showLoggedOut();
   }

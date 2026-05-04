@@ -1,0 +1,167 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+
+#header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: high;
+    font-size: 12vw;
+}
+
+
+#usernameContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+    font-family: milker;
+    font-size: 9vw;
+}
+.subHeader{
+    font-family: milker;
+    font-size: 5vw;
+    margin-bottom: 3vh;
+    color: var(--greyscale-color);
+}
+
+
+#inviteContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+#friendContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+#searchUser{
+    margin: 0 auto;
+    margin-top: 2vh;
+}
+.userBox{
+    width: 90vw;
+    margin: 0 auto;
+    font-family: milker;
+    color:var(--secondary-color);
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid var(--secondary-color);
+    border-radius: 15px;
+
+}
+.userBox img{
+    width: 10vw;
+    border-radius: 50%;
+}
+.inviteBox{
+    width:10vw;
+    height: 8vw;
+    background-color: var(--accent-color);
+    border-radius: 15px;
+}
+
+input{
+    width: 90%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color-color);
+    padding: 2vw;
+    border-radius: 15px;
+    font-family: miriam;
+    font-size: larger;
+    margin: 0 auto;
+}
+input::placeholder{
+    color: var(--greyscale-color);
+}
+input:focus {
+  outline: none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 4 5px black;
+}
+
+
+#notificationsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-bottom: 5vh;
+}
+.notificationBox{
+    padding-left: 1vw;
+    width: 90vw;
+    margin: 0 auto;
+    font-family: miriam;
+    font-size: 3vw;
+    color:var(--secondary-color);
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid var(--secondary-color);
+    border-radius: 15px;
+
+}
+.BTNContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+.acceptBTN{
+    width: 10vw;
+      height: 8vw;;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+.declineBTN{
+    height: 8vw;
+    width: 10vw;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+#footerButtonContainer{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+.footerBTN{
+    width: 30vw;
+    height: 8vh;
+    font-family: high;
+    font-size: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+#deleteBTN{
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+}
+
+#logoutBTN{
+    background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
