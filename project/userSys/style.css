@@ -1,0 +1,426 @@
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-family: 'miriam', sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ── NAV ────────────────────────────────── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--greyscale-color);
+  width: 100%;
+}
+
+.logo {
+  font-family: 'high', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: var(--secondary-color);
+}
+.logo span { color: var(--accent-color); }
+
+/* user badge (eingeloggt) */
+.user-badge {
+  display: none;
+  align-items: center;
+  gap: 12px;
+}
+.user-badge.visible { display: flex; }
+
+.avatar-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'high', sans-serif;
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+.username-display {
+  font-family: 'miriam', sans-serif;
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--greyscale-color);
+  border-radius: 10px;
+  color: var(--greyscale-color);
+  padding: 6px 18px;
+  cursor: pointer;
+  font-family: 'milker', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-logout:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ── MAIN ───────────────────────────────── */
+main {
+  width: 100%;
+  height:90vh;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+
+  background-image: radial-gradient(circle at 20% 80%, rgba(197,39,32,0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(197,39,32,0.04) 0%, transparent 50%);
+}
+
+/* ── AUTH BOX ───────────────────────────── */
+.auth-box {
+  width: 80vw;
+  margin: 5vh auto;
+  max-width: 420px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 15px;
+  padding: 40px;
+  animation: fadeUp 0.4s ease;
+}
+
+.auth-box h2 {
+  font-family: 'high', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 3px;
+  color: var(--secondary-color);
+  margin-bottom: 6px;
+}
+
+.auth-box > p {
+  font-family: 'miriam', sans-serif;
+  color: #aaa;
+  font-size: 0.88rem;
+  margin-bottom: 28px;
+}
+
+/* ── TABS ───────────────────────────────── */
+.tabs {
+  display: flex;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #555;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'milker', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  transition: all 0.2s;
+}
+.tab.active {
+  color: var(--secondary-color);
+  border-bottom-color: var(--accent-color);
+}
+.tab:hover { color: var(--secondary-color); }
+
+/* ── FORMS ──────────────────────────────── */
+.form { display: none; flex-direction: column; gap: 16px; }
+.form.active { display: flex; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.field label {
+  font-family: 'milker', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.field input {
+  background-color: var(--primary-color);
+  border: 1px solid #555;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--secondary-color);
+  font-family: 'miriam', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.field input:focus {
+  border-color: var(--accent-color);
+}
+.field input::placeholder { color: #666; }
+
+/* ── PRIMARY BUTTON ─────────────────────── */
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'high', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s, transform 0.1s;
+  text-transform: uppercase;
+}
+.btn-primary:hover { background-color: #a81f1a; }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* ── MESSAGE ────────────────────────────── */
+.message {
+  display: none;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-family: 'miriam', sans-serif;
+  font-size: 0.86rem;
+}
+.message.success {
+  background: rgba(80,200,120,0.1);
+  border: 1px solid rgba(80,200,120,0.3);
+  color: #50c878;
+  display: block;
+}
+.message.error {
+  background: rgba(197,39,32,0.12);
+  border: 1px solid rgba(197,39,32,0.3);
+  color: var(--accent-color);
+  display: block;
+}
+
+/* ── WELCOME BOX (eingeloggt) ───────────── */
+.welcome-box {
+  display: none;
+  text-align: center;
+  max-width: 500px;
+  animation: fadeUp 0.4s ease;
+}
+.welcome-box.visible { display: block; }
+
+.welcome-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'high', sans-serif;
+  font-size: 2.2rem;
+  color: var(--secondary-color);
+  margin: 0 auto 24px;
+}
+
+.welcome-box h1 {
+  font-family: 'high', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  color: var(--secondary-color);
+  margin-bottom: 8px;
+}
+.welcome-box h1 span { color: var(--accent-color); }
+
+.welcome-box > p {
+  color: #aaa;
+  font-family: 'miriam', sans-serif;
+  line-height: 1.6;
+}
+
+.welcome-info {
+  margin-top: 28px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 15px;
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-family: 'miriam', sans-serif;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--greyscale-color);
+}
+.info-row:last-child { border-bottom: none; }
+.info-row span:first-child { color: #888; }
+.info-row span:last-child {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+/* ── ANIMATION ──────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ═══════════════════════════════════════════
+   📱 RESPONSIVE IMPROVEMENTS (Mobile First)
+═══════════════════════════════════════════ */
+
+/* --- GLOBAL --- */
+body {
+  font-size: clamp(14px, 1.8vw, 16px);
+}
+
+/* --- NAV --- */
+nav {
+  padding: 16px 20px;
+}
+
+.logo {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+}
+
+/* --- AUTH BOX --- */
+.auth-box {
+  width: 92%;
+  margin: 4vh auto;
+  padding: 28px 22px;
+  border-radius: 14px;
+}
+
+/* Titel */
+.auth-box h2 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+}
+
+/* Beschreibung */
+.auth-box > p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* --- TABS --- */
+.tab {
+  padding: 12px 8px;
+  font-size: 0.75rem;
+}
+
+/* --- INPUTS --- */
+.field input {
+  padding: 14px 16px;
+  font-size: 1rem;
+}
+
+/* --- BUTTON --- */
+.btn-primary {
+  padding: 16px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+}
+
+/* --- WELCOME --- */
+.welcome-box {
+  width: 92%;
+  margin: 4vh auto;
+}
+
+.welcome-box h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+}
+
+.welcome-info {
+  padding: 18px;
+}
+
+/* --- INFO ROW (besser für mobile) --- */
+.info-row {
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+/* --- USER BADGE --- */
+.user-badge {
+  gap: 8px;
+}
+
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+/* --- SMALL DEVICES (iPhone etc.) --- */
+@media (max-width: 480px) {
+
+  nav {
+    padding: 14px 16px;
+  }
+
+  .auth-box {
+    padding: 24px 18px;
+  }
+
+  .tabs {
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+
+  .welcome-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+
+}
+
+/* --- LARGE PHONES (iPhone 14 Pro Max etc.) --- */
+@media (min-width: 430px) {
+
+  .auth-box {
+    max-width: 460px;
+  }
+
+  .welcome-box {
+    max-width: 520px;
+  }
+
+}
+
+/* --- TABLET --- */
+@media (min-width: 768px) {
+
+  nav {
+    padding: 20px 40px;
+  }
+
+  .auth-box {
+    padding: 40px;
+  }
+
+  .info-row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}

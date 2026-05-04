@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reelect — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/global.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">Reel<span>ect</span></div>
+  <div class="user-badge" id="userBadge">
+    <div class="avatar-circle" id="navAvatar"></div>
+    <span class="username-display" id="navUsername"></span>
+    <button class="btn-logout" onclick="logout()">Abmelden</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- AUTH BOX (logged out) -->
+  <div class="auth-box" id="authBox">
+    <h2>Willkommen</h2>
+    <p>Melde dich an oder erstelle einen Account.</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Anmelden</button>
+      <button class="tab" onclick="switchTab('register')">Registrieren</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="form active" id="loginForm">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="loginUsername" placeholder="dein_username">
+      </div>
+      <div class="field">
+        <label>Passwort</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <div class="message" id="loginMsg"></div>
+      <button class="btn-primary" onclick="login()">Anmelden</button>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="form" id="registerForm">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="regUsername" placeholder="dein_username" maxlength="30">
+      </div>
+      <div class="field">
+        <label>E-Mail</label>
+        <input type="email" id="regEmail" placeholder="mail@example.com" maxlength="30">
+      </div>
+      <div class="field">
+        <label>Passwort</label>
+        <input type="password" id="regPassword" placeholder="••••••••" maxlength="25">
+      </div>
+      <div class="message" id="registerMsg"></div>
+      <button class="btn-primary" onclick="register()">Account erstellen</button>
+    </div>
+  </div>
+
+  <!-- WELCOME (logged in) -->
+  <div class="welcome-box" id="welcomeBox">
+    <div class="welcome-avatar" id="welcomeAvatar"></div>
+    <h1>Hey, <span id="welcomeName"></span>!</h1>
+    <p>Du bist erfolgreich angemeldet.<br>Dein Reelect-Account ist bereit.</p>
+    <div class="welcome-info">
+      <div class="info-row">
+        <span>Username</span>
+        <span id="infoUsername"></span>
+      </div>
+      <div class="info-row">
+        <span>E-Mail</span>
+        <span id="infoEmail"></span>
+      </div>
+      <div class="info-row">
+        <span>Status</span>
+        <span style="color: var(--success);">✓ Angemeldet</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── TAB SWITCH ────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+  });
+  document.getElementById('loginForm').classList.toggle('active', tab === 'login');
+  document.getElementById('registerForm').classList.toggle('active', tab === 'register');
+  clearMessages();
+}
+
+function clearMessages() {
+  ['loginMsg','registerMsg'].forEach(id => {
+    const el = document.getElementById(id);
+    el.className = 'message';
+    el.textContent = '';
+  });
+}
+
+function showMessage(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'message ' + type;
+}
+
+// ── API CALL ──────────────────────────────────────────────
+async function api(data) {
+  const form = new FormData();
+  Object.entries(data).forEach(([k, v]) => form.append(k, v));
+  const res = await fetch('auth.php', { method: 'POST', body: form });
+  return res.json();
+}
+
+// ── LOGIN ─────────────────────────────────────────────────
+async function login() {
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+
+  if (!username || !password) {
+    showMessage('loginMsg', 'Bitte alle Felder ausfüllen.', 'error');
+    return;
+  }
+
+  const btn = document.querySelector('#loginForm .btn-primary');
+  btn.disabled = true;
+  btn.textContent = 'Laden...';
+
+  const res = await api({ action: 'login', username, password });
+
+  btn.disabled = false;
+  btn.textContent = 'Anmelden';
+
+  if (res.success) {
+    checkSession();
+  } else {
+    showMessage('loginMsg', res.message, 'error');
+  }
+}
+
+// ── REGISTER ──────────────────────────────────────────────
+async function register() {
+  const username = document.getElementById('regUsername').value.trim();
+  const email    = document.getElementById('regEmail').value.trim();
+  const password = document.getElementById('regPassword').value.trim();
+
+  if (!username || !email || !password) {
+    showMessage('registerMsg', 'Bitte alle Felder ausfüllen.', 'error');
+    return;
+  }
+
+  const btn = document.querySelector('#registerForm .btn-primary');
+  btn.disabled = true;
+  btn.textContent = 'Laden...';
+
+  const res = await api({ action: 'register', username, email, password });
+
+  btn.disabled = false;
+  btn.textContent = 'Account erstellen';
+
+  showMessage('registerMsg', res.message, res.success ? 'success' : 'error');
+
+  if (res.success) {
+    setTimeout(() => switchTab('login'), 1500);
+  }
+}
+
+// ── LOGOUT ────────────────────────────────────────────────
+async function logout() {
+  await api({ action: 'logout' });
+  showLoggedOut();
+}
+
+// ── SESSION CHECK ─────────────────────────────────────────
+async function checkSession() {
+  const res = await api({ action: 'check' });
+
+  if (res.loggedIn) {
+    showLoggedIn(res);
+  } else {
+    showLoggedOut();
+  }
+}
+
+function showLoggedIn(user) {
+  document.getElementById('authBox').style.display = 'none';
+  document.getElementById('welcomeBox').classList.add('visible');
+
+  document.getElementById('navAvatar').textContent   = user.avatar;
+  document.getElementById('navUsername').textContent = user.username;
+  document.getElementById('userBadge').classList.add('visible');
+
+  document.getElementById('welcomeAvatar').textContent = user.avatar;
+  document.getElementById('welcomeName').textContent   = user.username;
+  document.getElementById('infoUsername').textContent  = user.username;
+  document.getElementById('infoEmail').textContent     = user.email;
+}
+
+function showLoggedOut() {
+  document.getElementById('authBox').style.display = 'block';
+  document.getElementById('welcomeBox').classList.remove('visible');
+  document.getElementById('userBadge').classList.remove('visible');
+  clearMessages();
+}
+
+// Beim Laden Session prüfen
+checkSession();
+</script>
+</body>
+</html>
