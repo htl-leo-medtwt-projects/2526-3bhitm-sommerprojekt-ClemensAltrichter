@@ -1,0 +1,40 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+
+#header{
+    width: 100vw;
+    display: flex;
+flex-direction: column;
+
+
+    align-items: end;
+    font-family: high;
+    font-size: 12vw;
+}
+
+a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+#nav{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+#nav a{
+    font-family:high;
+    font-size: 10vw;
+    color: var(--secondary-color);
+}
