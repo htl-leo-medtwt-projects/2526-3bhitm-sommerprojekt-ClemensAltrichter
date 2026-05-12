@@ -1,6 +1,13 @@
 <?php
 require_once "./dbConnection.php";
 
+echo $_SESSION['userID'];
+
+if(!isset($_SESSION['userID'])){
+    header("Location: ../userSys/index.html");
+    exit;
+}
+
 $allUsedLists = [];
 
 

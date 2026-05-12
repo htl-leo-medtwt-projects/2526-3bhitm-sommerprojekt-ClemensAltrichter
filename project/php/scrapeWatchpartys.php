@@ -1,6 +1,11 @@
 <?php
 require_once 'dbConnection.php';
 
+if(!isset($_SESSION['userID'])){
+    header("Location: ../userSys/index.html");
+    exit;
+}
+
 $answer = array(
     "code" => 404,
     "data" => []

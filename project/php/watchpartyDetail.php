@@ -1,6 +1,11 @@
 <?php
 require_once 'dbConnection.php';
 
+if(!isset($_SESSION['userID'])){
+    header("Location: ../userSys/index.html");
+    exit;
+}
+
 if(isset($_GET['watchpartyID']) && ! empty($_GET['watchpartyID'])){
     $watchpartyID = $_GET['watchpartyID'];
 

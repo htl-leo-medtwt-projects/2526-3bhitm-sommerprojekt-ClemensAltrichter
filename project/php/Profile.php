@@ -1,17 +1,11 @@
 <?php
 require_once "./dbConnection.php";
 
+
+
 if(! isset($_SESSION['userID'])){
-
-/*
     header("Location: ../userSys/index.html");
-    exit;
-
-    EIGENTLICHES VORGEHEN ABER ZUM TESTEN BLÖD
-    */
-
-    $_SESSION["userID"] = 1;
-    $_SESSION["username"] = "test user";
+    exit;    
 }
 
 $users = [];
@@ -119,7 +113,7 @@ function displayLast4Notifications(){
 <body>
 
     <div id="header">
-        <h1>Watchpartys</h1>
+        <h1>Profile</h1>
     </div>
 
     <div class="hl headerHL" ></div>

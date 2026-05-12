@@ -1,6 +1,11 @@
 <?php
 require_once "./dbConnection.php";
 
+
+if(!isset($_SESSION['userID'])){
+    header("Location: ../userSys/index.html");
+    exit;
+}
 $allUsedLists = [];
 
 
@@ -34,7 +39,7 @@ $query = "SELECT * FROM list where userID = 1"; // hier muss die userID der eing
             echo json_encode($users);
         }
 
-        
+
 
 function display4Users(){
    // $friends = getUsers();
