@@ -3,6 +3,7 @@
     margin:0;
      overflow-x: hidden;
 }
+
 body{
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -46,10 +47,12 @@ body{
     flex-direction: column;
     gap: 1vh;
 }
+
 #searchUser{
     margin: 0 auto;
     margin-top: 2vh;
 }
+
 .userBox{
     width: 90vw;
     margin: 0 auto;
@@ -64,10 +67,12 @@ body{
     border-radius: 15px;
 
 }
+
 .userBox img{
     width: 10vw;
     border-radius: 50%;
 }
+
 .inviteBox{
     width:10vw;
     height: 8vw;
@@ -88,6 +93,7 @@ input{
 input::placeholder{
     color: var(--greyscale-color);
 }
+
 input:focus {
   outline: none;
   border: 2px solid var(--secondary-color);
@@ -104,6 +110,7 @@ input:focus {
     gap: 1vh;
     margin-bottom: 5vh;
 }
+
 .notificationBox{
     padding-left: 1vw;
     width: 90vw;
@@ -118,19 +125,21 @@ input:focus {
     justify-content: space-between;
     border:1px solid var(--secondary-color);
     border-radius: 15px;
-
 }
+
 .BTNContainer{
     display: flex;
     flex-direction: row;
     gap: 1vw;
 }
+
 .acceptBTN{
     width: 10vw;
       height: 8vw;;
     background-color: var(--accent-color);
     border-radius: 10px;
 }
+
 .declineBTN{
     height: 8vw;
     width: 10vw;
@@ -157,6 +166,7 @@ input:focus {
     align-items: center;
     border-radius: 15px;
 }
+
 #deleteBTN{
     background-color: var(--accent-color);
     color: var(--secondary-color);
