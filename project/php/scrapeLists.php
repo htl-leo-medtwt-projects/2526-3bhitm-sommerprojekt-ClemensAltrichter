@@ -1,35 +1,40 @@
 <?php
-
 require_once 'dbConnection.php';
 
-$answer = array(
-    "code" => 404,
-    "data" => []
-);
-$data = [];
-$code;
-
-$query = "SELECT * FROM list";
-
-
-if($conn -> query($query)){
-    $result = $conn -> query($query);
-    $code = 200;
-    $data = $result -> fetch_all(MYSQLI_ASSOC); 
-}else{
-    $code = 405;
-    
+if (!isset($_SESSION['userID'])) {
+    header("Location: ../userSys/index.html");
+    exit;
 }
 
-$answer["code"] = $code;
-$answer["data"] = $data;
+$answer = array("code" => 404, "data" => []);
+
+// ── FILM ZU LISTE HINZUFÜGEN ──────────────
+if (isset($_GET['addMovie']) && isset($_GET['listID'])) {
+    $movieID = $_GET['addMovie'];
+    $listID  = $_GET['listID'];
+
+    $stmt = $conn->prepare("INSERT INTO listmovie (listID, movieID,added) VALUES (?, ?,NOW())");
+    $stmt->bind_param("ii", $listID, $movieID);
+
+    if ($stmt->execute()) {
+        $answer["code"] = 200;
+    } else {
+        $answer["code"] = 405;
+    }
+    $stmt->close();
+
+// ── LISTEN DES USERS LADEN ────────────────
+} else {
+    $userID = $_SESSION['userID'];
+    $stmt = $conn->prepare("SELECT * FROM list WHERE userID = ?");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $answer["code"] = 200;
+    $answer["data"] = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+}
 
 echo json_encode($answer);
-
-$conn -> close();
-
-
-
-
-
+$conn->close();
 ?>
