@@ -8,11 +8,12 @@ if(!isset($_SESSION['userID'])){
 }
 $allUsedLists = [];
 
+$userID = $_SESSION['userID']; 
 
  $query = "SELECT * FROM user where userID IN 
- (SELECT DISTINCT userID1 from friend where userID2 = 1
+ (SELECT DISTINCT userID1 from friend where userID2 = $userID
  UNION ALL
-  SELECT DISTINCT userID2 from friend where userID1 =1)"; // hier muss die userID der eingeloggten Person rein
+  SELECT DISTINCT userID2 from friend where userID1 = $userID)"; // hier muss die userID der eingeloggten Person rein
 
         if($conn -> query($query)){
             $result = $conn -> query($query);
@@ -23,7 +24,7 @@ $allUsedLists = [];
         
 
 
-$query = "SELECT * FROM list where userID = 1"; // hier muss die userID der eingeloggten Person rein
+$query = "SELECT * FROM list where userID = $userID"; // hier muss die userID der eingeloggten Person rein
 
         if($conn -> query($query)){
             $result = $conn -> query($query);
@@ -101,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Bitte mindestens eine Liste auswählen");
         }
 
-        $userID = 1; // später Session!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //$userID = 1; // später Session!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         $date = date("Y-m-d");
         $status = "open";
 
@@ -143,6 +144,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmtFriend->bind_param("ii", $friendID, $watchpartyID);
             $stmtFriend->execute();
         }
+
+        //Friend notifications
+        $stmtNotification = $conn->prepare("
+            INSERT INTO notification (toID, fromID , status, content)
+            VALUES (?, ?, 'pending', 'invite');");
+
+            foreach (array_unique($friends) as $friendID) {
+            $stmtNotification->bind_param("ii", $friendID,$userID);
+            $stmtNotification->execute();
+        }
+
 
         $conn->commit();
 
