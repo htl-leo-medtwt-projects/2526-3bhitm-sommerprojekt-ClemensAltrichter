@@ -111,8 +111,8 @@ function displayLast4Notifications(){
 
 </head>
 <body>
-
-    <div id="header">
+ 
+    <div id="header" onclick="location.href='../pages/browser.html'">
         <h1>Profile</h1>
     </div>
 

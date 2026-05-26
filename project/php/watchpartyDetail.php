@@ -84,7 +84,7 @@ function displayAllUsers(){
    
 
 <a href="../pages/watchpartys.html">
-     <div id="header">
+     <div id="header" onclick="location.href='../pages/watchpartys.html'">
         <h1><?php  echo $watchpartyName;?></h1>
     </div>
 </a>

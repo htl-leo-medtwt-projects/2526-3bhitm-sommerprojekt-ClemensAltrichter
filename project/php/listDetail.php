@@ -83,7 +83,7 @@ if(isset($_GET['listID']) && ! empty($_GET['listID'])){
     
 
 <a href="../pages/lists.html">
-     <div id="header">
+     <div id="header" onclick="location.href='../pages/lists.html'">
         <h1><?php  echo $listName;?></h1>
     </div>
 </a>
