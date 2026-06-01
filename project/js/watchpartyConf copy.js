@@ -102,28 +102,24 @@ function addFriendToWatchparty(userID, ob){
 }
 
 // SUBMIT
-async function submitWatchparty(){
-
+async function submitWatchparty() {
     const name = document.getElementById("nameInput").value.trim();
     const location = document.getElementById("locationInput").value.trim();
 
-    if(name === ""){
-        alert("Bitte Name eingeben");
+    if (name === "") {
+        showError("Bitte Name eingeben");
         return;
     }
 
-    if(selectedLists.length === 0){
-        alert("Bitte mindestens eine Liste auswählen");
+    if (selectedLists.length === 0) {
+        showError("Bitte mindestens eine Liste auswählen");
         return;
     }
 
-    try{
-
+    try {
         const res = await fetch("../php/watchpartyConf copy.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name: name,
                 location: location,
@@ -134,15 +130,21 @@ async function submitWatchparty(){
 
         const data = await res.json();
 
-        if(data.success){
-            //alert("Watchparty erstellt!");
+        if (data.success) {
             window.location.href = "../pages/watchpartyWait.html?partyID=" + data.partyID;
-        }else{
-            alert(data.message);
+        } else {
+            showError(data.message);
         }
 
-    }catch(err){
+    } catch (err) {
+        // Serverfehler — einfach weglassen, kein alert nötig
         console.error(err);
-        alert("Serverfehler");
     }
+}
+
+function showError(msg) {
+    const el = document.getElementById('formError');
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 3000);
 }

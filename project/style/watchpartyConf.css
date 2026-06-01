@@ -159,3 +159,14 @@ input:focus {
     background-color: var(--accent-color);
 
 }
+#formError {
+    margin: 0 20px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(197, 39, 32, 0.12);
+    border: 1px solid rgba(197, 39, 32, 0.3);
+    color: var(--accent-color);
+    font-family: 'miriam', sans-serif;
+    font-size: 0.86rem;
+    margin-top: 2vh;
+}

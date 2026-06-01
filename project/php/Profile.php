@@ -1,4 +1,5 @@
 <?php
+/*
 require_once "./dbConnection.php";
 
 
@@ -94,6 +95,130 @@ function displayLast4Notifications(){
 
 
 
+*/
+
+require_once "./dbConnection.php";
+
+if (!isset($_SESSION['userID'])) {
+    header("Location: ../userSys/index.html");
+    exit;
+}
+
+$userID = $_SESSION['userID'];
+
+// ── DELETE USER (jetzt als GET mit JSON response) ──
+if (isset($_GET['deleteUser']) && $_GET['deleteUser'] == "true") {
+    $stmt = $conn->prepare("DELETE FROM user WHERE userID = ?");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $stmt->close();
+    session_destroy();
+    header("Location: ../userSys/index.html");
+    exit;
+}
+
+// ── REJECT INVITE ──────────────────────────────────
+/*
+if (isset($_GET['rejectInvite'])) {
+    $partyID = $_GET['rejectInvite'];
+    header('Content-Type: application/json');
+
+    $stmt = $conn->prepare("UPDATE notification SET status = 'rejected' WHERE partyID = ? AND toID = ?");
+    $stmt->bind_param("ii", $partyID, $userID);
+    $stmt->execute();
+    $stmt->close();
+
+    echo json_encode(["code" => 200]);
+    exit;
+}*/
+if (isset($_GET['rejectInvite'])) {
+    $notificationID = $_GET['rejectInvite'];
+    header('Content-Type: application/json');
+
+    $stmt = $conn->prepare("UPDATE notification SET status = 'rejected' WHERE id = ? AND toID = ?");
+    $stmt->bind_param("ii", $notificationID, $userID);
+    $stmt->execute();
+    $stmt->close();
+
+    echo json_encode(["code" => 200]);
+    exit;
+}
+
+// ── FREUNDE LADEN ──────────────────────────────────
+$users = [];
+$stmt = $conn->prepare("SELECT * FROM user WHERE userID IN 
+    (SELECT DISTINCT userID1 FROM friend WHERE userID2 = ?
+     UNION ALL
+     SELECT DISTINCT userID2 FROM friend WHERE userID1 = ?)");
+$stmt->bind_param("ii", $userID, $userID);
+$stmt->execute();
+$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// ── NOTIFICATIONS MIT ABSENDER-USERNAME ───────────
+$notifications = [];
+$stmt = $conn->prepare("
+    SELECT n.*, u.username AS senderName
+    FROM notification n
+    JOIN user u ON u.userID = n.fromID
+    WHERE n.toID = ? AND n.status = 'pending'
+    ORDER BY n.id DESC
+    LIMIT 4
+");
+$stmt->bind_param("i", $userID);
+$stmt->execute();
+$notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+function display4Users() {
+    global $users;
+    if (count($users) < 1) {
+        echo "<p id='noFriends'>No friends to invite yet</p>";
+    } else {
+        for ($i = 0; $i < min(4, count($users)); $i++) {
+            echo "<div class='userBox'>";
+            echo "<img class='avatar' src='../resource/img/" . $users[$i]['avatar'] . "' alt='avatar'>";
+            echo "<h2>" . $users[$i]['username'] . "</h2>";
+            echo "<div class='inviteBox'></div>";
+            echo "</div>";
+        }
+    }
+}
+/*
+function displayLast4Notifications() {
+    global $notifications;
+    if (count($notifications) < 1) {
+        echo "<p id='noNotifications'>No notifications yet</p>";
+    } else {
+        foreach ($notifications as $n) {
+            echo "<div class='notificationBox'>";
+            echo "<h2>" . htmlspecialchars($n['senderName']) . " invited you</h2>";
+            echo "<div class='BTNContainer'>";
+            echo "<div class='declineBTN' onclick='rejectInvite(" . $n['partyID'] . ", this.closest(\".notificationBox\"))'></div>";
+            echo "<div class='acceptBTN' onclick='acceptInvite(" . $n['partyID'] . ")'></div>";
+            echo "</div>";
+            echo "</div>";
+        }
+    }
+}*/
+function displayLast4Notifications() {
+    global $notifications;
+    if (count($notifications) < 1) {
+        echo "<p id='noNotifications'>No notifications yet</p>";
+    } else {
+        foreach ($notifications as $n) {
+            echo "<div class='notificationBox' data-notificationid='" . $n['id'] . "' data-partyid='" . ($n['partyID'] ?? '') . "'>";
+            echo "<h2>" . htmlspecialchars($n['senderName']) . " invited you</h2>";
+            echo "<div class='BTNContainer'>";
+            echo "<div class='declineBTN' onclick='rejectInvite(this)'></div>";
+            echo "<div class='acceptBTN' onclick='acceptInvite(this)'></div>";
+            echo "</div>";
+            echo "</div>";
+        }
+    }
+    
+
+}
 
 ?>
 
@@ -153,11 +278,8 @@ function displayLast4Notifications(){
 
         <div id="footerButtonContainer">
 
-        <a href="./Profile.php?deleteUser=true">
-            <div id="deleteBTN" class="footerBTN">
-                delete
-            </div>
-        </a>
+        <div id="deleteBTN" class="footerBTN" onclick="deleteAccount()">delete</div>
+
             <div id="logoutBTN" class="footerBTN" onclick="logout()">
                 log out
             </div>
