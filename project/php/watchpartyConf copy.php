@@ -32,13 +32,18 @@ $query = "SELECT * FROM list where userID = $userID"; // hier muss die userID de
         }
 
 
-        if(isset($_GET['getLists']) && $_GET['getLists'] == "true"){
-            echo json_encode($lists);
-        }
+        // NUR bei GET-Requests ausgeben
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    if (isset($_GET['getLists']) && $_GET['getLists'] == "true") {
+        echo json_encode($lists);
+        exit;
+    }
 
-        if(isset($_GET['getFriends']) && $_GET['getFriends'] == "true"){
-            echo json_encode($users);
-        }
+    if (isset($_GET['getFriends']) && $_GET['getFriends'] == "true") {
+        echo json_encode($users);
+        exit;
+    }
+}
 
 
 
@@ -132,34 +137,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // FRIENDS
         $stmtFriend = $conn->prepare("
-            INSERT INTO partymember (userID, watchpartyID)
-            VALUES (?, ?)
+            INSERT INTO partymember (userID,status, watchpartyID)
+            VALUES (?,?, ?)
         ");
 
+        $statusJoined = 'joined';
+$statusPending = 'pending';
+
         // creator hinzufügen
-        $stmtFriend->bind_param("ii", $userID, $watchpartyID);
+        $stmtFriend->bind_param("isi", $userID, $statusJoined, $watchpartyID);
         $stmtFriend->execute();
 
+        // Freunde eintragen
         foreach (array_unique($friends) as $friendID) {
-            $stmtFriend->bind_param("ii", $friendID, $watchpartyID);
+            $stmtFriend->bind_param("isi", $friendID, $statusPending, $watchpartyID);
             $stmtFriend->execute();
         }
 
         //Friend notifications
-        $stmtNotification = $conn->prepare("
-            INSERT INTO notification (toID, fromID , status, content)
-            VALUES (?, ?, 'pending', 'invite');");
+        $stmtNotification = $conn->prepare("INSERT INTO notification (fromID, toID, content, status, partyID) VALUES (?, ?, 'invite', 'pending', ?)");
 
             foreach (array_unique($friends) as $friendID) {
-            $stmtNotification->bind_param("ii", $friendID,$userID);
+            $stmtNotification->bind_param("iii", $userID, $friendID, $watchpartyID);
             $stmtNotification->execute();
         }
+
+        
 
 
         $conn->commit();
 
         echo json_encode([
-            "success" => true
+            "success" => true,
+            "partyID" => $watchpartyID
         ]);
 
     } catch (Exception $e) {

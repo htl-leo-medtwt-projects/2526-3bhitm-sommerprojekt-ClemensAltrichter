@@ -135,8 +135,8 @@ async function submitWatchparty(){
         const data = await res.json();
 
         if(data.success){
-            alert("Watchparty erstellt!");
-            window.location.href = "watchpartys.html";
+            //alert("Watchparty erstellt!");
+            window.location.href = "../pages/watchpartyWait.html?partyID=" + data.partyID;
         }else{
             alert(data.message);
         }

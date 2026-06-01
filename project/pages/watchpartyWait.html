@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cineMatch</title>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/watchpartyWait.css">
+</head>
+<body>
+
+<div class="page-title">WAITING ROOM</div>
+
+<div class="section">
+    <div class="section-label">Party Name</div>
+    <div id="partyName" style="font-family:'high',sans-serif;font-size:1.4rem;letter-spacing:3px;padding:16px 0;"></div>
+</div>
+
+<div class="hl"></div>
+
+<div class="section">
+    <div class="section-label">Members</div>
+    <div id="memberList"></div>
+</div>
+
+<div class="btn-row" id="startRow" style="display:none;">
+    <button class="btn btn-create" onclick="startParty()">START</button>
+</div>
+
+<div style="padding:20px;font-family:'miriam',sans-serif;font-size:0.8rem;color:var(--greyscale-color);text-align:center;" id="waitingMsg">
+    Waiting for others...
+</div>
+
+<script src="../js/watchpartyWait.js"></script>
+</body>
+</html>

@@ -83,6 +83,7 @@ if ($action === "check") {
     if (isset($_SESSION["userID"])) {
         echo json_encode([
             "loggedIn" => true,
+            "userID"   => $_SESSION["userID"],  
             "username" => $_SESSION["username"],
             "avatar"   => $_SESSION["avatar"],
             "email"    => $_SESSION["email"]

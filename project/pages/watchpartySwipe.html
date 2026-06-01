@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cineMatch — Swipe</title>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/watchpartySwipe.css">
+</head>
+<body>
+
+<!-- SWIPE SCREEN -->
+<div id="swipeScreen">
+    <div class="page-title">SWIPE</div>
+
+    <div class="swipe-counter-row">
+        <span id="swipeCounter">0 / 0</span>
+        <span id="memberStatus"></span>
+    </div>
+
+    <div class="card-area">
+        <div class="swipe-card" id="swipeCard">
+            <div class="card-poster" id="cardPoster">
+                <img id="cardImg" src="" alt="">
+            </div>
+            <div class="card-info">
+                <div class="card-title" id="cardTitle"></div>
+                <div class="card-overview" id="cardOverview"></div>
+                <div class="card-rating" id="cardRating"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="swipe-btns">
+        <button class="swipe-btn btn-dislike" onclick="swipe(false)" aria-label="Dislike">✕</button>
+        <button class="swipe-btn btn-like"    onclick="swipe(true)"  aria-label="Like">♥</button>
+    </div>
+</div>
+
+<!-- WAITING SCREEN (warten bis alle fertig) -->
+<div id="waitingScreen" style="display:none;">
+    <div class="page-title">FAST FERTIG</div>
+    <div class="waiting-box">
+        <p class="waiting-text">Warten auf andere...</p>
+        <div id="doneStatus"></div>
+    </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="resultScreen" style="display:none;">
+    <div class="page-title">ERGEBNIS</div>
+    <div class="section">
+        <div class="section-label">The final movie was:</div>
+        <div id="winnerCard"></div>
+    </div>
+    <div class="hl"></div>
+    <div class="section">
+        <div class="section-label">Alle Filme nach Likes</div>
+        <div id="allResults"></div>
+    </div>
+</div>
+
+<script src="../js/watchpartySwipe.js"></script>
+</body>
+</html>

@@ -84,7 +84,7 @@ function displayLast4Notifications(){
         echo "<div class='BTNContainer'>";
         
         echo "<div class='declineBTN'></div>";
-        echo "<div class='acceptBTN'></div>";
+        echo "<div class='acceptBTN' onclick='acceptInvite(". $notifications[count($notifications) - $i-1]['partyID'] .")'></div>";
         echo "</div>";
         echo "</div>";
     }
