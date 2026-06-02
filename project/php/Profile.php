@@ -146,11 +146,12 @@ if (isset($_GET['rejectInvite'])) {
 
 // ── FREUNDE LADEN ──────────────────────────────────
 $users = [];
-$stmt = $conn->prepare("SELECT * FROM user WHERE userID IN 
+$stmt = $conn->prepare("SELECT * FROM user WHERE userID NOT IN 
     (SELECT DISTINCT userID1 FROM friend WHERE userID2 = ?
      UNION ALL
-     SELECT DISTINCT userID2 FROM friend WHERE userID1 = ?)");
-$stmt->bind_param("ii", $userID, $userID);
+     SELECT DISTINCT userID2 FROM friend WHERE userID1 = ?)
+     AND userID != ?");
+$stmt->bind_param("iii", $userID, $userID, $userID);
 $stmt->execute();
 $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
@@ -179,7 +180,7 @@ function display4Users() {
             echo "<div class='userBox'>";
             echo "<img class='avatar' src='../resource/img/" . $users[$i]['avatar'] . "' alt='avatar'>";
             echo "<h2>" . $users[$i]['username'] . "</h2>";
-            echo "<div class='inviteBox'></div>";
+            echo "<div class='inviteBox' data-userid='" . $users[$i]['userID'] . "' onclick='sendFriendRequest(" . $users[$i]['userID'] . ", this)'></div>";
             echo "</div>";
         }
     }
@@ -206,6 +207,7 @@ function displayLast4Notifications() {
     if (count($notifications) < 1) {
         echo "<p id='noNotifications'>No notifications yet</p>";
     } else {
+        /*
         foreach ($notifications as $n) {
             echo "<div class='notificationBox' data-notificationid='" . $n['id'] . "' data-partyid='" . ($n['partyID'] ?? '') . "'>";
             echo "<h2>" . htmlspecialchars($n['senderName']) . " invited you</h2>";
@@ -215,9 +217,107 @@ function displayLast4Notifications() {
             echo "</div>";
             echo "</div>";
         }
+            */
+        foreach ($notifications as $n) {
+            echo "<div class='notificationBox' data-notificationid='" . $n['id'] . "' data-partyid='" . ($n['partyID'] ?? '') . "' data-fromuserid='" . $n['fromID'] . "'>";
+            
+            if ($n['content'] === 'invite') {
+                echo "<h2>" . htmlspecialchars($n['senderName']) . " invited you</h2>";
+                echo "<div class='BTNContainer'>";
+                echo "<div class='declineBTN' onclick='rejectInvite(this)'></div>";
+                echo "<div class='acceptBTN' onclick='acceptInvite(this)'></div>";
+                echo "</div>";
+            } else if ($n['content'] === 'friendrequest') {
+                echo "<h2>" . htmlspecialchars($n['senderName']) . " sent you a friend request</h2>";
+                echo "<div class='BTNContainer'>";
+                echo "<div class='declineBTN' onclick='rejectInvite(this)'></div>";
+                echo "<div class='acceptBTN' onclick='acceptFriendRequest(this)'></div>";
+                echo "</div>";
+            }
+            echo "</div>";
+        }
     }
     
 
+}
+
+
+
+// ── USER SUCHEN ───────────────────────────
+if (isset($_GET['searchUser'])) {
+    header('Content-Type: application/json');
+    $search = '%' . $_GET['searchUser'] . '%';
+
+    $stmt = $conn->prepare("
+        SELECT userID, username, avatar FROM user
+        WHERE username LIKE ? AND userID != ?
+        LIMIT 8
+    ");
+    $stmt->bind_param("si", $search, $userID);
+    $stmt->execute();
+    $results = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    echo json_encode(["code" => 200, "data" => $results]);
+    exit;
+}
+
+// ── FRIEND REQUEST SENDEN ─────────────────
+if (isset($_GET['sendRequest'])) {
+    header('Content-Type: application/json');
+    $toUserID = $_GET['sendRequest'];
+
+    // Prüfen ob bereits eine Freundschaft/Request existiert
+    $stmt = $conn->prepare("
+        SELECT * FROM friend 
+        WHERE (userID1 = ? AND userID2 = ?) OR (userID1 = ? AND userID2 = ?)
+    ");
+    $stmt->bind_param("iiii", $userID, $toUserID, $toUserID, $userID);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo json_encode(["code" => 409, "message" => "Already friends or request pending"]);
+        exit;
+    }
+    $stmt->close();
+
+    // Friend Request eintragen
+    $stmt = $conn->prepare("INSERT INTO friend (userID1, userID2, status) VALUES (?, ?, 'pending')");
+    $stmt->bind_param("ii", $userID, $toUserID);
+    $stmt->execute();
+    $stmt->close();
+
+    // Notification senden
+    $stmt = $conn->prepare("INSERT INTO notification (fromID, toID, content, status) VALUES (?, ?, 'friendrequest', 'pending')");
+    $stmt->bind_param("ii", $userID, $toUserID);
+    $stmt->execute();
+    $stmt->close();
+
+    echo json_encode(["code" => 200]);
+    exit;
+}
+
+// ── FRIEND REQUEST ANNEHMEN ───────────────
+if (isset($_GET['acceptRequest'])) {
+    header('Content-Type: application/json');
+    $fromUserID = $_GET['acceptRequest'];
+    $notificationID = $_GET['notificationID'] ?? null;
+
+    $stmt = $conn->prepare("UPDATE friend SET status = 'accepted' WHERE userID1 = ? AND userID2 = ?");
+    $stmt->bind_param("ii", $fromUserID, $userID);
+    $stmt->execute();
+    $stmt->close();
+
+    if ($notificationID) {
+        $stmt = $conn->prepare("UPDATE notification SET status = 'accepted' WHERE id = ? AND toID = ?");
+        $stmt->bind_param("ii", $notificationID, $userID);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    echo json_encode(["code" => 200]);
+    exit;
 }
 
 ?>
@@ -268,7 +368,8 @@ function displayLast4Notifications() {
         <?php  display4Users();?>
     </div>
 
-    <input type="text" name="searchUser" id="searchUser" placeholder="Search for Users to invite">
+    <input type="text" id="searchUser" placeholder="Search for Users to invite" oninput="handleUserSearch(this.value)">
+    <div id="searchResults"></div>
 
     <div class="hl headerHL"></div>
 

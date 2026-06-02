@@ -79,3 +79,61 @@ currentIndex+= numOfMoviesToShow;
 document.getElementById("discoverContainer").innerHTML += s;
 
 }
+
+
+let searchTimeout = null;
+let isSearching = false;
+
+function handleSearch(query) {
+    const clearBtn = document.getElementById('clearSearch');
+    clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+    // Debounce — erst nach 400ms suchen damit nicht bei jedem Buchstaben ein Request geht
+    clearTimeout(searchTimeout);
+    if (query.length < 2) {
+        if (!isSearching) return;
+        clearSearch();
+        return;
+    }
+
+    searchTimeout = setTimeout(() => {
+        searchMovies(query);
+    }, 400);
+}
+
+function searchMovies(query) {
+    isSearching = true;
+
+    fetch(`../php/scrapeMovies.php?search=${encodeURIComponent(query)}`)
+        .then(r => r.json())
+        .then(data => {
+            const container = document.getElementById('discoverContainer');
+            document.getElementById('buttonContainer').style.display = 'none';
+
+            if (!data.data || data.data.length === 0) {
+                container.innerHTML = '<p class="noResults">No movies found for "' + query + '"</p>';
+                return;
+            }
+
+            container.innerHTML = data.data.map(m => `
+                <div class="movieCard" i="${m.movieID}">
+                    <div class="posterContainer">
+                        <img src="${m.poster}" alt="${m.title} poster">
+                        <button class="addToListBtn" onclick="openListPopup(${m.movieID}, '${m.title}')">+</button>
+                    </div>
+                    <div class="titleContainer">${m.title}</div>
+                    <div class="descContainer">${m.overview}</div>
+                </div>
+            `).join('');
+        });
+}
+
+function clearSearch() {
+    isSearching = false;
+    document.getElementById('searchInput').value = '';
+    document.getElementById('clearSearch').style.display = 'none';
+    document.getElementById('discoverContainer').innerHTML = '';
+    document.getElementById('buttonContainer').style.display = 'flex';
+    currentIndex = 0;
+    showNext();
+}

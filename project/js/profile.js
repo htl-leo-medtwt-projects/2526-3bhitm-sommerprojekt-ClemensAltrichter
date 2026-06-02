@@ -98,3 +98,63 @@ function deleteAccount() {
     if (!confirm('Account wirklich löschen? Das kann nicht rückgängig gemacht werden.')) return;
     window.location.href = '../php/Profile.php?deleteUser=true';
 }
+
+let searchTimeout = null;
+
+function handleUserSearch(query) {
+    clearTimeout(searchTimeout);
+    const results = document.getElementById('searchResults');
+
+    if (query.length < 2) {
+        results.innerHTML = '';
+        return;
+    }
+
+    searchTimeout = setTimeout(() => {
+        fetch(`../php/Profile.php?searchUser=${encodeURIComponent(query)}`)
+            .then(r => r.json())
+            .then(data => {
+                if (!data.data || data.data.length === 0) {
+                    results.innerHTML = '<p class="noResults">No users found</p>';
+                    return;
+                }
+                results.innerHTML = data.data.map(u => `
+                    <div class="userSearchResult" data-userid="${u.userID}">
+                        <span class="searchUsername">${u.username}</span>
+                        <button class="addFriendBtn" onclick="sendFriendRequest(${u.userID}, this)">+</button>
+                    </div>
+                `).join('');
+            });
+    }, 400);
+}
+
+function sendFriendRequest(toUserID, btn) {
+    fetch(`../php/Profile.php?sendRequest=${toUserID}`)
+        .then(r => r.json())
+        .then(data => {
+            if (data.code === 200) {
+                btn.textContent = '✓';
+                btn.disabled = true;
+                btn.style.borderColor = '#50c878';
+                btn.style.color = '#50c878';
+            } else {
+                btn.textContent = '!';
+            }
+        });
+}
+
+function acceptFriendRequest(btn) {
+    const box = btn.closest('.notificationBox');
+    const fromUserID = box.dataset.fromuserid;
+    const notificationID = box.dataset.notificationid;
+
+    fetch(`../php/Profile.php?acceptRequest=${fromUserID}&notificationID=${notificationID}`)
+        .then(r => r.json())
+        .then(data => {
+            if (data.code === 200) {
+                box.style.opacity = '0';
+                box.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => box.remove(), 300);
+            }
+        });
+}

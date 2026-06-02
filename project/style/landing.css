@@ -7,18 +7,20 @@
     margin:0;
      overflow-x: hidden;
 }
+
 h1{
     font-family: high;
 }
+
 body{
     background-color: var(--primary-color);
     color: var(--secondary-color);
-   
 }
 
 
 a{
     text-decoration: none;
+    color: inherit;
     counter-reset: var(--secondary-color);
 }
 

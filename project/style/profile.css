@@ -177,3 +177,53 @@ input:focus {
     border: 2px solid var(--secondary-color);
     color: var(--secondary-color);
 }
+
+/* ── USER SUCHE ─────────────────────────── */
+#searchResults {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.userSearchResult {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: 1px solid var(--greyscale-color);
+    border-radius: 10px;
+}
+
+.searchUsername {
+    font-family: 'milker', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.addFriendBtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--greyscale-color);
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.addFriendBtn:active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.noResults {
+    font-family: 'miriam', sans-serif;
+    font-size: 0.82rem;
+    color: var(--greyscale-color);
+    padding: 8px 0;
+}
