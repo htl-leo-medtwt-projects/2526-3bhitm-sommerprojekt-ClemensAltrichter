@@ -9,4 +9,5 @@ async function safeFetch(url, options = {}) {
     }
 
     return res.clone();
+    
 }
