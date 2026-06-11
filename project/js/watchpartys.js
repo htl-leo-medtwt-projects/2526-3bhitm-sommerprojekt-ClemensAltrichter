@@ -4,7 +4,7 @@ getAllWatchpartys();
 
 function getAllWatchpartys(){
     safeFetch("../php/scrapeWatchpartys.php")
-    .then(response => response.json())
+
     .then(data => {
         console.log(data);
 

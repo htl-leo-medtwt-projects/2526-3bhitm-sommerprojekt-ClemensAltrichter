@@ -117,8 +117,7 @@ async function getAllLists(){
     })
         */
 
-    const response = await safeFetch('../php/scrapeLists.php');
-    const data = await response.json();
+    const data = await safeFetch('../php/scrapeLists.php');
     console.log(data);
     return data;
 }
@@ -148,7 +147,6 @@ function addToList(listID, element) {
   if (element.classList.contains('added')) return;
 
   safeFetch(`../php/scrapeLists.php?addMovie=${currentMovieID}&listID=${listID}`)
-    .then(r => r.json())
     .then(data => {
       if (data.code === 200) {
         element.classList.add('added');

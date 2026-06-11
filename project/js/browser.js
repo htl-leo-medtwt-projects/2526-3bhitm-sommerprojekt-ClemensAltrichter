@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function getAllMovies(){
     safeFetch('../php/scrapeMovies.php') //..............
-    .then(response => response.json())
     .then(data => {
 
      movies = data.data;
@@ -106,7 +105,6 @@ function searchMovies(query) {
     isSearching = true;
 
     safeFetch(`../php/scrapeMovies.php?search=${encodeURIComponent(query)}`)
-        .then(r => r.json())
         .then(data => {
             const container = document.getElementById('discoverContainer');
             document.getElementById('buttonContainer').style.display = 'none';

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── FILME LADEN ───────────────────────────
 function loadMovies() {
     safeFetch(`../php/scrapeSwipe.php?getMovies=${watchpartyID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code !== 200 || data.data.length === 0) return;
             movies = data.data;
@@ -64,7 +64,7 @@ function swipe(liked) {
 
     // Swipe in DB speichern
     safeFetch(`../php/scrapeSwipe.php?swipe=1&watchpartyID=${watchpartyID}&movieID=${movie.movieID}&liked=${liked}`)
-        .then(r => r.json());
+
 
     // Nächste Karte nach Animation
     setTimeout(() => {
@@ -84,7 +84,7 @@ function showWaiting() {
 
 function checkDone() {
     safeFetch(`../php/scrapeSwipe.php?checkDone=${watchpartyID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code !== 200) return;
 
@@ -103,7 +103,7 @@ function checkDone() {
 // ── ERGEBNIS ──────────────────────────────
 function showResult() {
     safeFetch(`../php/scrapeSwipe.php?getResult=${watchpartyID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code !== 200) return;
 

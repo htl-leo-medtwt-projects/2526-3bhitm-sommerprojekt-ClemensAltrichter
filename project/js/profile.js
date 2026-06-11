@@ -1,8 +1,8 @@
 async function api(data) {
     const form = new FormData();
     Object.entries(data).forEach(([k, v]) => form.append(k, v));
-    const res = await safeFetch('../userSys/auth.php', { method: 'POST', body: form });
-    return res.json();
+    const datas = await safeFetch('../userSys/auth.php', { method: 'POST', body: form });
+    return datas;
 }
 
 async function logout() {
@@ -39,7 +39,6 @@ function acceptInvite(btn) {
     const partyID = box.dataset.partyid;
 
     safeFetch(`../php/scrapeWatchpartys.php?acceptInvite=${partyID}`)
-        .then(r => r.json())
         .then(data => {
             if (data.code === 200) {
                 window.location.href = `../pages/watchpartyWait.html?partyID=${partyID}`;
@@ -83,7 +82,7 @@ function rejectInvite(btn) {
     const notificationID = box.dataset.notificationid;
 
     safeFetch(`../php/Profile.php?rejectInvite=${notificationID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code === 200) {
                 box.style.opacity = '0';
@@ -112,7 +111,7 @@ function handleUserSearch(query) {
 
     searchTimeout = setTimeout(() => {
         safeFetch(`../php/Profile.php?searchUser=${encodeURIComponent(query)}`)
-            .then(r => r.json())
+
             .then(data => {
                 if (!data.data || data.data.length === 0) {
                     results.innerHTML = '<p class="noResults">No users found</p>';
@@ -130,7 +129,7 @@ function handleUserSearch(query) {
 
 function sendFriendRequest(toUserID, btn) {
     safeFetch(`../php/Profile.php?sendRequest=${toUserID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code === 200) {
                 btn.textContent = '✓';
@@ -149,7 +148,7 @@ function acceptFriendRequest(btn) {
     const notificationID = box.dataset.notificationid;
 
     safeFetch(`../php/Profile.php?acceptRequest=${fromUserID}&notificationID=${notificationID}`)
-        .then(r => r.json())
+
         .then(data => {
             if (data.code === 200) {
                 box.style.opacity = '0';

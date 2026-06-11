@@ -80,7 +80,7 @@ function startPolling() {
     method: 'POST',
     body: new URLSearchParams({ action: 'check' })
   })
-    .then(r => r.json())
+
     .then(data => {
       if (!data.loggedIn) {
         window.location.href = '../userSys/index.html';
@@ -94,7 +94,7 @@ function startPolling() {
 
 function pollStatus() {
   safeFetch(`../php/scrapeWatchpartys.php?getPartyStatus=${partyID}`)
-    .then(r => r.json())
+
     .then(data => {
       if (data.code !== 200) return;
 
@@ -129,7 +129,7 @@ function renderMembers(members) {
 
 function startParty() {
   safeFetch(`../php/scrapeWatchpartys.php?startParty=${partyID}`)
-    .then(r => r.json());
+    //.then(r => r.json());
 }
 
 // ── LIST POPUP ────────────────────────────
@@ -149,7 +149,7 @@ function loadUserLists() {
   container.innerHTML = '<div class="popup-loading">Laden...</div>';
 
   safeFetch(`../php/scrapeLists.php`)
-    .then(r => r.json())
+
     .then(data => {
       if (!data.data || data.data.length === 0) {
         container.innerHTML = '<div class="popup-loading">Keine Listen vorhanden.</div>';
@@ -165,7 +165,7 @@ function loadUserLists() {
 
       // Bereits hinzugefügte Listen markieren
       safeFetch(`../php/scrapeWatchpartys.php?getPartyLists=${partyID}`)
-        .then(r => r.json())
+
         .then(d => {
           if (!d.data) return;
           d.data.forEach(l => {
@@ -183,7 +183,7 @@ function toggleList(el) {
   el.classList.toggle('selected');
 
   safeFetch(`../php/scrapeWatchpartys.php?${adding ? 'addList' : 'removeList'}=${listID}&watchpartyID=${partyID}`)
-    .then(r => r.json());
+    //.then(r => r.json());
 }
 
 document.addEventListener('DOMContentLoaded', startPolling);

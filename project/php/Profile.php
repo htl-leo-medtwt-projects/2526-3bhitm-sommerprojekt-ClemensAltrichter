@@ -332,6 +332,8 @@ if (isset($_GET['acceptRequest'])) {
     <title>cineMatch</title>
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/profile.css">
+
+       <script src="../js/auth.js" defer></script>
     <script src="../js/profile.js" defer></script>
 
 </head>

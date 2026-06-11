@@ -78,6 +78,8 @@ if(isset($_GET['listID']) && ! empty($_GET['listID'])){
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/listDetail.css">
 
+       <script src="../js/auth.js" defer></script>
+
 </head>
 <body>
     

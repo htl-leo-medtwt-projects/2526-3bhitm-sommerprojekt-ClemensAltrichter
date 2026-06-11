@@ -8,6 +8,6 @@ async function safeFetch(url, options = {}) {
         return null;
     }
 
-    return res.clone();
+    return data;
     
 }
