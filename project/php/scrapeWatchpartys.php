@@ -1,8 +1,9 @@
 <?php
 require_once 'dbConnection.php';
 
-if(!isset($_SESSION['userID'])){
-    header("Location: ../userSys/index.html");
+if (!isset($_SESSION['userID'])) {
+    header('Content-Type: application/json');
+    echo json_encode(["code" => 401, "message" => "Unauthorized"]);
     exit;
 }
 
@@ -109,6 +110,44 @@ if (isset($_GET['startParty'])) {
 
     $stmt = $conn->prepare("UPDATE watchparty SET status = 'active' WHERE watchpartyID = ? AND userID = ?");
     $stmt->bind_param("ii", $partyID, $_SESSION['userID']);
+    $stmt->execute();
+    $stmt->close();
+
+    $answer["code"] = 200;
+}
+
+// ── LISTEN EINER PARTY ABFRAGEN ───────────
+if (isset($_GET['getPartyLists'])) {
+    $watchpartyID = $_GET['getPartyLists'];
+
+    $stmt = $conn->prepare("SELECT listID FROM partylist WHERE watchpartyID = ?");
+    $stmt->bind_param("i", $watchpartyID);
+    $stmt->execute();
+    $answer["code"] = 200;
+    $answer["data"] = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+}
+
+// ── LISTE HINZUFÜGEN ──────────────────────
+if (isset($_GET['addList'])) {
+    $listID       = $_GET['addList'];
+    $watchpartyID = $_GET['watchpartyID'];
+
+    $stmt = $conn->prepare("INSERT IGNORE INTO partylist (listID, watchpartyID) VALUES (?, ?)");
+    $stmt->bind_param("ii", $listID, $watchpartyID);
+    $stmt->execute();
+    $stmt->close();
+
+    $answer["code"] = 200;
+}
+
+// ── LISTE ENTFERNEN ───────────────────────
+if (isset($_GET['removeList'])) {
+    $listID       = $_GET['removeList'];
+    $watchpartyID = $_GET['watchpartyID'];
+
+    $stmt = $conn->prepare("DELETE FROM partylist WHERE listID = ? AND watchpartyID = ?");
+    $stmt->bind_param("ii", $listID, $watchpartyID);
     $stmt->execute();
     $stmt->close();
 

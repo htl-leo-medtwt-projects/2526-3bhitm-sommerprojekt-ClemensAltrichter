@@ -128,3 +128,113 @@ body {
   color: var(--secondary-color);
 }
 .btn-create:active { background-color: #a81f1a; }
+
+/* ── POPUP ──────────────────────────────── */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 200;
+    align-items: flex-end;
+    justify-content: center;
+}
+.popup-overlay.visible {
+    display: flex;
+    animation: overlayIn 0.25s ease;
+}
+@keyframes overlayIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.popup-box {
+    background-color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    max-width: 600px;
+    padding: 24px 24px 40px;
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.popup-title {
+    font-family: 'high', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+.popup-subtitle {
+    font-family: 'miriam', sans-serif;
+    font-size: 0.8rem;
+    color: var(--greyscale-color);
+    margin-top: 4px;
+}
+.popup-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--greyscale-color);
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+.popup-lists {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.list-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1px solid var(--greyscale-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.list-option.selected {
+    border-color: var(--accent-color);
+    background-color: rgba(197, 39, 32, 0.08);
+}
+.list-option-name {
+    font-family: 'milker', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+.list-checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--greyscale-color);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    color: transparent;
+    transition: all 0.2s;
+}
+.list-option.selected .list-checkbox {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--secondary-color);
+}
+.popup-loading {
+    color: var(--greyscale-color);
+    font-family: 'miriam', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+#waitingMsg {
+    padding: 16px 20px;
+    font-family: 'miriam', sans-serif;
+    font-size: 0.8rem;
+    color: var(--greyscale-color);
+    text-align: center;
+}

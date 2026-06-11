@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,6 +29,65 @@
 
 <div style="padding:20px;font-family:'miriam',sans-serif;font-size:0.8rem;color:var(--greyscale-color);text-align:center;" id="waitingMsg">
     Waiting for others...
+</div>
+
+<script src="../js/watchpartyWait.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cineMatch</title>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/watchpartyWait.css">
+
+    <script src="../js/auth.js" defer></script>
+</head>
+<body>
+
+<div class="page-title">WAITING ROOM</div>
+
+<div class="section">
+    <div class="section-label">Party Name</div>
+    <div id="partyName"></div>
+</div>
+
+<div class="hl"></div>
+
+<div class="section">
+    <div class="section-label">Members</div>
+    <div id="memberList"></div>
+</div>
+
+<!-- Host: START Button -->
+<div class="btn-row" id="startRow" style="display:none;">
+    <button class="btn btn-create" onclick="startParty()">START</button>
+</div>
+
+<!-- Nicht-Host: ADD LISTS Button + Warte-Text -->
+<div id="guestRow" style="display:none;">
+    <div class="btn-row">
+        <button class="btn btn-cancel" onclick="openListPopup()">ADD LISTS</button>
+    </div>
+    <div id="waitingMsg">Waiting for host to start...</div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="listPopup" onclick="closeListPopup(event)">
+    <div class="popup-box">
+        <div class="popup-header">
+            <div>
+                <div class="popup-title">Add your Lists</div>
+                <div class="popup-subtitle">Select lists to add to this party</div>
+            </div>
+            <button class="popup-close" onclick="closeListPopup()">✕</button>
+        </div>
+        <div class="popup-lists" id="popupLists"></div>
+    </div>
 </div>
 
 <script src="../js/watchpartyWait.js"></script>

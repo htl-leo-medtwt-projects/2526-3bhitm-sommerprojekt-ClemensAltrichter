@@ -4,7 +4,7 @@ const formBox = document.getElementById('formBox');
 getAllLists();
 function getAllLists(){
     console.log("fetching lists...");
-    fetch('../php/scrapeLists.php')
+    safeFetch('../php/scrapeLists.php')
     .then(response => response.json())
     .then(data => {
         console.log(data);

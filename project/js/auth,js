@@ -1,0 +1,12 @@
+// auth.js — auf allen Seiten einbinden
+async function safeFetch(url, options = {}) {
+    const res = await fetch(url, options);
+    const data = await res.json();
+
+    if (data.code === 401) {
+        window.location.href = '../userSys/index.html';
+        return null;
+    }
+
+    return res.clone();
+}

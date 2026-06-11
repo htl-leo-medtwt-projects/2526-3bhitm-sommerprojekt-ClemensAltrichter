@@ -1,7 +1,7 @@
 async function api(data) {
     const form = new FormData();
     Object.entries(data).forEach(([k, v]) => form.append(k, v));
-    const res = await fetch('../userSys/auth.php', { method: 'POST', body: form });
+    const res = await safeFetch('../userSys/auth.php', { method: 'POST', body: form });
     return res.json();
 }
 
@@ -38,7 +38,7 @@ function acceptInvite(btn) {
     const box = btn.closest('.notificationBox');
     const partyID = box.dataset.partyid;
 
-    fetch(`../php/scrapeWatchpartys.php?acceptInvite=${partyID}`)
+    safeFetch(`../php/scrapeWatchpartys.php?acceptInvite=${partyID}`)
         .then(r => r.json())
         .then(data => {
             if (data.code === 200) {
@@ -82,7 +82,7 @@ function rejectInvite(btn) {
     const box = btn.closest('.notificationBox');
     const notificationID = box.dataset.notificationid;
 
-    fetch(`../php/Profile.php?rejectInvite=${notificationID}`)
+    safeFetch(`../php/Profile.php?rejectInvite=${notificationID}`)
         .then(r => r.json())
         .then(data => {
             if (data.code === 200) {
@@ -111,7 +111,7 @@ function handleUserSearch(query) {
     }
 
     searchTimeout = setTimeout(() => {
-        fetch(`../php/Profile.php?searchUser=${encodeURIComponent(query)}`)
+        safeFetch(`../php/Profile.php?searchUser=${encodeURIComponent(query)}`)
             .then(r => r.json())
             .then(data => {
                 if (!data.data || data.data.length === 0) {
@@ -129,7 +129,7 @@ function handleUserSearch(query) {
 }
 
 function sendFriendRequest(toUserID, btn) {
-    fetch(`../php/Profile.php?sendRequest=${toUserID}`)
+    safeFetch(`../php/Profile.php?sendRequest=${toUserID}`)
         .then(r => r.json())
         .then(data => {
             if (data.code === 200) {
@@ -148,7 +148,7 @@ function acceptFriendRequest(btn) {
     const fromUserID = box.dataset.fromuserid;
     const notificationID = box.dataset.notificationid;
 
-    fetch(`../php/Profile.php?acceptRequest=${fromUserID}&notificationID=${notificationID}`)
+    safeFetch(`../php/Profile.php?acceptRequest=${fromUserID}&notificationID=${notificationID}`)
         .then(r => r.json())
         .then(data => {
             if (data.code === 200) {

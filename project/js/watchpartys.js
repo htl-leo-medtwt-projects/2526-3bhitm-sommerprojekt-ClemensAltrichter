@@ -3,7 +3,7 @@
 getAllWatchpartys();
 
 function getAllWatchpartys(){
-    fetch("../php/scrapeWatchpartys.php")
+    safeFetch("../php/scrapeWatchpartys.php")
     .then(response => response.json())
     .then(data => {
         console.log(data);

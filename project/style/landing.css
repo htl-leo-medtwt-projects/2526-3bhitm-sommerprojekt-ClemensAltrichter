@@ -76,12 +76,12 @@ height: min-content;
     margin-top: 5vh;
 }
 .headerBTN{
-    width: 30vw;
-    height: 10vw;
+    width: 40vw;
+    height: 15vw;
     background-color: var(--accent-color);
     display: flex;
     border-radius: 5px;
-    font-size: larger;
+    font-size: x-large;
     font-family: milker;
     display: flex;
     justify-content: center;

@@ -2,10 +2,12 @@
 require_once "./dbConnection.php";
 
 
-if(!isset($_SESSION['userID'])){
-    header("Location: ../userSys/index.html");
+if (!isset($_SESSION['userID'])) {
+    header('Content-Type: application/json');
+    echo json_encode(["code" => 401, "message" => "Unauthorized"]);
     exit;
 }
+
 $allUsedLists = [];
 
 $userID = $_SESSION['userID']; 

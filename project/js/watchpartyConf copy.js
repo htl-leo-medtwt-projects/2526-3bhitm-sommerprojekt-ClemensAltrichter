@@ -5,7 +5,7 @@ let selectedLists = [];
 let selectedFriends = [];
 
 // LISTS LADEN
-fetch("../php/watchpartyConf copy.php?getLists=true")
+safeFetch("../php/watchpartyConf copy.php?getLists=true")
 .then(response => response.json())
 .then(data => {
 
@@ -15,7 +15,7 @@ fetch("../php/watchpartyConf copy.php?getLists=true")
 });
 
 // FRIENDS LADEN
-fetch("../php/watchpartyConf copy.php?getFriends=true")
+safeFetch("../php/watchpartyConf copy.php?getFriends=true")
 .then(response => response.json())
 .then(data => {
 
@@ -117,7 +117,7 @@ async function submitWatchparty() {
     }
 
     try {
-        const res = await fetch("../php/watchpartyConf copy.php", {
+        const res = await safeFetch("../php/watchpartyConf copy.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

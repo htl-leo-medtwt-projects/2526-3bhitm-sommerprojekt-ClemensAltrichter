@@ -5,10 +5,11 @@ let movies = [];
 let currentIndex = 0;
 let numOfMoviesToShow = 6; 
 
-getAllMovies();
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    getAllMovies();
 
   const nav    = document.querySelector('.top-nav');
   const header = document.querySelector('.nav-header');
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function getAllMovies(){
-    fetch('../php/scrapeMovies.php')
+    safeFetch('../php/scrapeMovies.php') //..............
     .then(response => response.json())
     .then(data => {
 
@@ -104,7 +105,7 @@ function handleSearch(query) {
 function searchMovies(query) {
     isSearching = true;
 
-    fetch(`../php/scrapeMovies.php?search=${encodeURIComponent(query)}`)
+    safeFetch(`../php/scrapeMovies.php?search=${encodeURIComponent(query)}`)
         .then(r => r.json())
         .then(data => {
             const container = document.getElementById('discoverContainer');
