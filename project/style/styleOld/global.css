@@ -1,0 +1,169 @@
+
+
+@font-face {
+    font-family: high;
+    src: url(../resource/font/HighriseFont-Bold-Demo.otf);
+}
+@font-face {
+    font-family: milker;
+    src: url(../resource/font/Milker.otf);
+}
+@font-face {
+    font-family: miriam;
+    src: url(../resource/font/MiriamLibre-VariableFont_wght.ttf);
+}
+
+:root{
+    --primary-color: #060606;
+    --secondary-color: #f2f4f3;
+    --accent-color: #c52720;
+    --greyscale-color: #33363f;
+    
+}
+
+.hl{
+    background-color: var(--secondary-color);
+    width: 90%;
+    height: 2px;
+
+    margin: 5vh auto;
+}
+.headerHL{
+    margin-top: 1vh ;
+}
+
+
+/* ═══════════════════════════════════════════
+   nav.css — Aufklappbare Top Navigation
+   Globales style.css muss vorher geladen sein
+═══════════════════════════════════════════ */
+
+/* ── NAV WRAPPER ────────────────────────── */
+.top-nav {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid var(--greyscale-color);
+  background-color: var(--primary-color);
+  z-index: 100;
+}
+
+/* ── HEADER (immer sichtbar) ────────────── */
+.nav-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.nav-header:hover {
+  background-color: rgba(242, 244, 243, 0.03);
+}
+
+.nav-page-title {
+  font-family: 'high', sans-serif;
+  font-size: 30vw;
+
+  color: var(--secondary-color);
+  text-align: center;
+
+  padding-bottom: 12px;
+  width: 100%;
+}
+
+/* ── PFEIL ──────────────────────────────── */
+.nav-arrow {
+  margin-top: 12px;
+  width: 14px;
+  height: 14px;
+  border-left: 3px solid var(--secondary-color);
+  border-bottom: 3px solid var(--secondary-color);
+  transform: rotate(-45deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s;
+}
+
+/* Pfeil mit eigenem Bild — css-arrow Klasse entfernen und das hier nutzen: */
+.nav-arrow.img-arrow {
+  border: none;
+  width: 24px;
+  height: 24px;
+  background-image: url('../resource/arrow-down.png'); /* ← HIER dein Pfeilbild */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+}
+
+.top-nav.open .nav-arrow {
+  transform: rotate(135deg); /* zeigt nach oben */
+}
+.top-nav.open .nav-arrow.img-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── DROPDOWN LINKS ─────────────────────── */
+.nav-links {
+  position: absolute;
+  top: 100%;       /* direkt unter dem Header */
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  border-bottom: 1px solid var(--greyscale-color);
+
+  /* Animation */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+}
+
+.top-nav.open .nav-links {
+  max-height: 600px;
+  opacity: 1;
+}
+
+/* Links untereinander über die volle Breite */
+.nav-links-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  font-family: 'high', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 4px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: 22px 40px;
+  text-align: center;
+
+  border-bottom: 1px solid var(--greyscale-color);
+
+  /* Einzel-Animation pro Link */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: color 0.2s,
+              opacity 0.3s ease,
+              transform 0.3s ease;
+}
+.nav-link:last-child { border-bottom: none; }
+
+.top-nav.open .nav-link:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+.top-nav.open .nav-link:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s;  }
+.top-nav.open .nav-link:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+.top-nav.open .nav-link:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.2s;  }
+
+.nav-link:hover { color: var(--accent-color); }
+.nav-link.active { color: var(--accent-color); }
+
+.subHeader{
+    font-family: milker;
+    font-size: 5vw;
+    margin-bottom: 3vh;
+    color: var(--greyscale-color);
+}
+
+

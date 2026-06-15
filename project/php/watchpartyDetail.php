@@ -95,7 +95,7 @@ function displayAllUsers(){
     <div id="confBox">
 <a href="watchpartyDetail.php?watchpartyID=<?php echo $watchpartyID;?>&delete=true">
         <div id="deleteBTN">
-            Delete List
+            Delete Watchparty
         </div>
     </a>
     </div>

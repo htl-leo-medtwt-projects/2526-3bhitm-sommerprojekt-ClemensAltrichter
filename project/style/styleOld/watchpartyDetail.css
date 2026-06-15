@@ -1,0 +1,105 @@
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+   
+}
+a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+#header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-align: center;
+    font-family: high;
+    font-size:10vw;
+}
+#header h1{
+margin-top: 1vh;
+}
+
+#confBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#deleteBTN{
+   padding: 1vw;
+   width: 90vw;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: milker;
+    font-size: 5vw;
+   
+    border-radius: 10px;
+
+}
+.subHeader{
+    font-family: milker;
+    font-size: 5vw;
+    margin-bottom: 3vh;
+    color: var(--greyscale-color);
+}
+
+#contentBox{
+    width: 90%;
+    margin: 0  auto;
+    color: var(--secondary-color);
+}
+#chosenMovieBox{
+    width: 70vw;
+    margin: 0 auto;
+    margin-bottom: 5vh;
+    font-family: miriam;
+}
+#chosenMovieBox img{
+    width: 100%;
+    border-radius: 15px;
+}
+
+#userContainer{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 1vh;
+
+width: 100%;
+height: min(auto,30vh);
+margin-bottom: 5vh;
+
+}
+.userBox{
+    font-family: milker;
+    width: 90%;
+    margin: 0 auto;
+    border: var(--greyscale-color) 1px solid;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 2vw; 
+    padding: 1vw;
+}
+.avatar{
+    width: 10vw;
+    margin-left: 3vw;
+}
+
+

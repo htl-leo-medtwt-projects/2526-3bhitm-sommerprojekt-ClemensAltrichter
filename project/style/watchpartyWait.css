@@ -2,239 +2,76 @@
    watchpartyWait.css
 ═══════════════════════════════════════════ */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  font-family: 'miriam', sans-serif;
-  min-height: 100vh;
-  padding-bottom: 60px;
+    padding-bottom: 60px;
 }
 
-/* ── TITEL ──────────────────────────────── */
-.page-title {
-  font-family: 'high', sans-serif;
-  font-size: 2.2rem;
-  letter-spacing: 5px;
-  text-align: center;
-  padding: 24px 20px 16px;
-  border-bottom: 1px solid var(--greyscale-color);
-}
-
-/* ── PARTY NAME ─────────────────────────── */
 #partyName {
-  font-family: 'high', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 3px;
-  padding: 16px 0;
-  color: var(--secondary-color);
-}
-
-/* ── SECTION ───────────────────────────── */
-.section {
-  padding: 28px 20px 0;
-}
-
-.section-label {
-  font-family: 'milker', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--greyscale-color);
-  margin-bottom: 12px;
-}
-
-.hl {
-  background-color: var(--secondary-color);
-  width: 90%;
-  height: 2px;
-  margin: 28px auto;
+    font-family: high, sans-serif;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    letter-spacing: 3px;
+    padding: 14px 0 0;
+    color: var(--secondary-color);
 }
 
 /* ── MEMBER CARDS ───────────────────────── */
 #memberList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.friend-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border: 1px solid var(--greyscale-color);
-  border-radius: 10px;
-  background-color: var(--primary-color);
-}
-
-.friend-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: var(--greyscale-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'high', sans-serif;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.friend-name {
-  font-family: 'milker', sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  flex: 1;
-}
-
-.ready-badge {
-  font-size: 0.72rem;
-  color: #50c878;
-  font-family: 'miriam', sans-serif;
-}
-
-/* ── WAITING MSG ────────────────────────── */
-#waitingMsg {
-  padding: 20px;
-  font-family: 'miriam', sans-serif;
-  font-size: 0.8rem;
-  color: var(--greyscale-color);
-  text-align: center;
-}
-
-/* ── BUTTONS ───────────────────────────── */
-.btn-row {
-  display: flex;
-  gap: 12px;
-  padding: 32px 20px 0;
-}
-
-.btn {
-  flex: 1;
-  padding: 16px;
-  border-radius: 10px;
-  font-family: 'high', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border: none;
-  text-align: center;
-}
-
-.btn-create {
-  background-color: var(--accent-color);
-  color: var(--secondary-color);
-}
-.btn-create:active { background-color: #a81f1a; }
-
-/* ── POPUP ──────────────────────────────── */
-.popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 200;
-    align-items: flex-end;
-    justify-content: center;
-}
-.popup-overlay.visible {
-    display: flex;
-    animation: overlayIn 0.25s ease;
-}
-@keyframes overlayIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-.popup-box {
-    background-color: var(--primary-color);
-    border: 1px solid var(--secondary-color);
-    border-radius: 15px 15px 0 0;
-    width: 100%;
-    max-width: 600px;
-    padding: 24px 24px 40px;
-    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@keyframes slideUp {
-    from { transform: translateY(100%); }
-    to   { transform: translateY(0); }
-}
-.popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-}
-.popup-title {
-    font-family: 'high', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-}
-.popup-subtitle {
-    font-family: 'miriam', sans-serif;
-    font-size: 0.8rem;
-    color: var(--greyscale-color);
-    margin-top: 4px;
-}
-.popup-close {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--greyscale-color);
-    border: none;
-    color: var(--secondary-color);
-    font-size: 1rem;
-    cursor: pointer;
-}
-.popup-lists {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.list-option {
+
+.friend-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
+    gap: 12px;
+    padding: 12px 14px;
     border: 1px solid var(--greyscale-color);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.2s, background-color 0.2s;
-}
-.list-option.selected {
-    border-color: var(--accent-color);
-    background-color: rgba(197, 39, 32, 0.08);
-}
-.list-option-name {
-    font-family: 'milker', sans-serif;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-}
-.list-checkbox {
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    border: 2px solid var(--greyscale-color);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem;
-    color: transparent;
-    transition: all 0.2s;
-}
-.list-option.selected .list-checkbox {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: var(--secondary-color);
-}
-.popup-loading {
-    color: var(--greyscale-color);
-    font-family: 'miriam', sans-serif;
-    font-size: 0.9rem;
-    padding: 10px 0;
+    border-radius: var(--radius-md);
 }
 
+.friend-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--greyscale-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: high, sans-serif;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.friend-name {
+    font-family: milker, sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
+.ready-badge {
+    font-size: 0.7rem;
+    font-family: miriam, sans-serif;
+}
+
+/* ── WAITING MSG ────────────────────────── */
 #waitingMsg {
-    padding: 16px 20px;
-    font-family: 'miriam', sans-serif;
-    font-size: 0.8rem;
+    padding: 20px;
+    font-family: miriam, sans-serif;
+    font-size: 0.82rem;
     color: var(--greyscale-color);
     text-align: center;
 }
+
+/* ── GUEST ROW ──────────────────────────── */
+#guestRow .btn-row {
+    padding-bottom: 0;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid var(--greyscale-color);
+    color: var(--secondary-color);
+}
+.btn-cancel:active { border-color: var(--secondary-color); }

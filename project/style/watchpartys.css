@@ -1,96 +1,96 @@
-*,html{
-    padding: 0;
-    margin:0;
-     overflow-x: hidden;
+/* ═══════════════════════════════════════════
+   watchpartys.css
+═══════════════════════════════════════════ */
+
+#header {
+    font-family: high, sans-serif;
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    letter-spacing: 5px;
+    text-align: center;
+    padding: 24px var(--spacing-page) 12px;
+    border-bottom: 1px solid var(--border);
 }
-body{
-    background-color: var(--primary-color);
+
+#addBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px var(--spacing-page) 8px;
+    cursor: pointer;
+}
+#addBox p {
+    font-family: milker, sans-serif;
+    font-size: clamp(1rem, 5vw, 1.4rem);
+    letter-spacing: 2px;
     color: var(--secondary-color);
-   
 }
-a{
+
+#contentBox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px var(--spacing-page) 40px;
+}
+
+/* ── WATCHPARTY CARD ────────────────────── */
+.watchparty {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--greyscale-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
     text-decoration: none;
     color: var(--secondary-color);
 }
-#header{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    font-family: high;
-    font-size: 12vw;
-}
-#addBox{
-    width: 90vw;
-    margin: 0 auto;
-    /*border: 2px solid var(--secondary-color);*/
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vw;
-}
-#addBox p{
-    font-family: milker;
-    font-size: 8vw;
-    text-align: left;
-    width: min-content;
-}
 
-#contentBox{
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 5vh;
-    margin-bottom: 5vh;
+.prevPoster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background-color: var(--greyscale-color);
+    overflow: hidden;
+    flex-shrink: 0;
 }
-
-.watchparty{
-    height: 30vh;
-    font-family: milker;
-    border-radius: 15px;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    display: flex;
-    flex-direction: row;
-
-}
-.prevPoster{
-}
-.prevPoster img{
+.prevPoster img {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center center;
     display: block;
-
 }
-.prevInfo{
-    width: 45vw;
+
+.prevInfo {
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-   font-family: milker;
-    padding: 3vw;
+    gap: 3px;
+    min-width: 0;
 }
-.nameBox{
+
+.nameBox {
     font-family: milker;
-    display: -webkit-box;
-  -webkit-line-clamp: 2; /* max 2 Zeilen */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  /*hilfe von KI um nicht ganzen text anzeigen zu müssen*/
+    font-size: x-larger;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.dateBox{
-    font-family: miriam;
-    font-size: 4vw;
+
+.dateBox {
+    font-family: miriam, sans-serif;
+    font-size:1rem;
+    color: var(--secondary-color);
 }
-.titleBox{
-    font-family: miriam;
-    display: -webkit-box;
-  -webkit-line-clamp: 2; /* max 2 Zeilen */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+
+.titleBox {
+    font-family: miriam, sans-serif;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.barcodeBox{
-    margin: 0 auto;
-}
+
+.barcodeBox { display: none; }

@@ -1,130 +1,147 @@
-@font-face {
-    font-family: high;
-    src: url(../resource/font/HighriseFont-Bold-Demo.otf);
-}
-*,html{
-    padding: 0;
-    margin:0;
-     overflow-x: hidden;
+/* ═══════════════════════════════════════════
+   landing.css
+═══════════════════════════════════════════ */
+
+body {
+    overflow-x: hidden;
 }
 
-h1{
-    font-family: high;
-}
-
-body{
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-
-a{
-    text-decoration: none;
-    color: inherit;
-    counter-reset: var(--secondary-color);
-}
-
-
-#headerBox{
-width: 100vw;
-height: 90vh;
-}
-/*Optional background gradient Animation*/
-
-#headerTitleBox{
-    margin: 0;
-    width: 100%;
-height: min-content;
+/* ── HERO ───────────────────────────────── */
+#headerBox {
+    width: 100vw;
+    min-height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
     align-items: center;
-
-}
-#headerBox h1{
-    margin: 0;
-    height: min-content;
-    padding: 0;
-}
-#cineTxt{
-    font-size: 80vw;
-}
-#matchTxt{
-    font-size: 50vw;
-    transform: translateY(-50px);
 }
 
-
-
-#headerDescBox{
-    font-family: miriam;
+#headerTitleBox {
+    width: 100%;
     text-align: center;
 }
-#headerDescBigger{
-    font-size:larger;
+
+#cineTxt {
+    font-family: high, sans-serif;
+    font-size: clamp(5rem, 78vw, 22rem);
+    line-height: 0.85;
+    display: block;
 }
 
+#matchTxt {
+    font-family: high, sans-serif;
+    font-size: clamp(3.5rem, 50vw, 14rem);
+    line-height: 0.85;
+    display: block;
+    transform: translateY(-8px);
+}
 
+#headerDescBox {
+    font-family: miriam, sans-serif;
+    text-align: center;
+    padding: 20px var(--spacing-page) 0;
+    color: var(--greyscale-color);
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+    line-height: 1.6;
+}
 
-#headerButtonBox{
+#headerDescBigger {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    color: var(--secondary-color);
+    margin-bottom: 4px;
+}
+
+/* ── CTA BUTTONS ────────────────────────── */
+#headerButtonBox {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    gap: 10vw;
-    margin-top: 5vh;
+    gap: 12px;
+    margin-top: 32px;
+    padding: 0 var(--spacing-page);
 }
-.headerBTN{
-    width: 40vw;
-    height: 15vw;
-    background-color: var(--accent-color);
-    display: flex;
-    border-radius: 5px;
-    font-size: x-large;
-    font-family: milker;
+
+.headerBTN {
+    flex: 1;
+    max-width: 180px;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    font-family: milker, sans-serif;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    letter-spacing: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    text-decoration: none;
 }
-#loginBTN{
+
+#loginBTN {
+    background-color: var(--accent-color);
     color: var(--secondary-color);
 }
-#registerBTN{
+#loginBTN:active { background-color: #a81f1a; }
+
+#registerBTN {
     background-color: transparent;
-    border: 2px solid var(--accent-color);
+    border: 1px solid var(--accent-color);
     color: var(--accent-color);
 }
+#registerBTN:active {
+    background-color: rgba(197,39,32,0.1);
+}
 
-
-
-#tutorialBox{
+/* ── HOW IT WORKS ───────────────────────── */
+#tutorialBox {
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    padding-bottom: 5vh;
-
-}
-#tutorialBox h1{
-    margin-top: 2vh;
-    font-family: milker;
-    margin-left: 1vh;
-    margin-bottom: 5vh;
-}
-#tutorialBox p{
-    font-family: milker;
-    margin-left: 1vw;
-    width: 80%;
-    line-height: 1.5;
-    margin: auto;
-    margin-bottom: 2vh;
+    padding: 32px var(--spacing-page) 40px;
 }
 
-#contentBox{
-    padding: 1vh;
-    font-family: miriam;
-
+#tutorialBox h1 {
+    font-family: milker, sans-serif;
+    font-size:xx-large;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
 }
-#contentBox h1{
+
+#tutorialBox p {
+    font-family: miriam, sans-serif;
+    font-size: x-large;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* ── CONTENT SECTION ────────────────────── */
+#contentBox {
+    padding: var(--spacing-page);
+}
+/*
+#contentBox h1 {
+    font-family: high, sans-serif;
+    font-size: clamp(3rem, 25vw, 8rem);
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 0.9;
+}
+
+#posterBox {
+    background-image: url(../resource/img/cinemaSeats.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 75vw;
+    max-width: 320px;
+    height: 50vw;
+    max-height: 220px;
+    margin: 0 auto 24px;
+    font-family: milker, sans-serif;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    word-spacing: 4vw;
+    padding: 12px;
+}
+    */
+    #contentBox h1{
+        font-family: high, sans-serif;
     font-size: 30vw;
     text-align: center; 
     margin-bottom: 5vh;
@@ -143,51 +160,56 @@ height: min-content;
     padding: 1vh;
 }
 #optionsExplanaitionBox{
-    width: 50%;
+    width: 60%;
     margin: auto;
+    font-size:x-large;
+    text-align: center;
 }
 
-
-#sideScrollBox{
-   
+/* ── SCROLL OPTIONS ─────────────────────── */
+#sideScrollBox {
     display: grid;
-    grid-template-columns: repeat(4, 70vw);
-    
-    gap: 3vh;
+    grid-template-columns: repeat(3, 75vw);
+    gap: 12px;
     overflow-x: scroll;
-    padding: 1vh;
-
+    padding: var(--spacing-page);
+    scrollbar-width: none;
 }
-.sideScrollOption{
+#sideScrollBox::-webkit-scrollbar { display: none; }
 
-    width: 70vw;
-
-    height: 60vw;
-    background-color: var(--accent-color);
-    border-radius: 15px;
+.sideScrollOption {
+    width: 75vw;
+    aspect-ratio: 1 / 0.85;
+    border-radius: var(--radius-lg);
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5vw;
+    gap: 12px;
     align-items: center;
+    padding: 20px;
 }
-.sideScrollOption h2{
-    font-family: milker;
-    letter-spacing: 5px;
-        font-size: 2em;
+
+.sideScrollOption h2 {
+    font-family: milker, sans-serif;
+    letter-spacing: 3px;
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
 }
-#o1{
+
+#o1 {
     background-color: var(--primary-color);
-    border: var(--secondary-color) 1px solid;
+    border: 1px solid var(--secondary-color);
     color: var(--secondary-color);
 }
-#o2{
+#o2 {
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }
-
-#o3{
-    color: var(--primary-color);
+#o3 {
     background-color: var(--greyscale-color);
+    color: var(--secondary-color);
+}
+#o4 {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
 }

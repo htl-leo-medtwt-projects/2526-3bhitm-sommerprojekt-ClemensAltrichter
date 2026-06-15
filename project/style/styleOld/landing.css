@@ -1,0 +1,193 @@
+@font-face {
+    font-family: high;
+    src: url(../resource/font/HighriseFont-Bold-Demo.otf);
+}
+*,html{
+    padding: 0;
+    margin:0;
+     overflow-x: hidden;
+}
+
+h1{
+    font-family: high;
+}
+
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+a{
+    text-decoration: none;
+    color: inherit;
+    counter-reset: var(--secondary-color);
+}
+
+
+#headerBox{
+width: 100vw;
+height: 90vh;
+}
+/*Optional background gradient Animation*/
+
+#headerTitleBox{
+    margin: 0;
+    width: 100%;
+height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+#headerBox h1{
+    margin: 0;
+    height: min-content;
+    padding: 0;
+}
+#cineTxt{
+    font-size: 80vw;
+}
+#matchTxt{
+    font-size: 50vw;
+    transform: translateY(-50px);
+}
+
+
+
+#headerDescBox{
+    font-family: miriam;
+    text-align: center;
+}
+#headerDescBigger{
+    font-size:larger;
+}
+
+
+
+#headerButtonBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10vw;
+    margin-top: 5vh;
+}
+.headerBTN{
+    width: 40vw;
+    height: 15vw;
+    background-color: var(--accent-color);
+    display: flex;
+    border-radius: 5px;
+    font-size: x-large;
+    font-family: milker;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loginBTN{
+    color: var(--secondary-color);
+}
+#registerBTN{
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+
+
+#tutorialBox{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding-bottom: 5vh;
+
+}
+#tutorialBox h1{
+    margin-top: 2vh;
+    font-family: milker;
+    margin-left: 1vh;
+    margin-bottom: 5vh;
+}
+#tutorialBox p{
+    font-family: milker;
+    margin-left: 1vw;
+    width: 80%;
+    line-height: 1.5;
+    margin: auto;
+    margin-bottom: 2vh;
+}
+
+#contentBox{
+    padding: 1vh;
+    font-family: miriam;
+
+}
+#contentBox h1{
+    font-size: 30vw;
+    text-align: center; 
+    margin-bottom: 5vh;
+}
+#posterBox{
+    background-image: url(../resource/img/cinemaSeats.png);
+   
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 70vw;
+    height: 50vh;
+    margin: auto;
+    font-family: milker;
+    font-size: 9vw;
+    word-spacing: 5vw;
+    padding: 1vh;
+}
+#optionsExplanaitionBox{
+    width: 50%;
+    margin: auto;
+}
+
+
+#sideScrollBox{
+   
+    display: grid;
+    grid-template-columns: repeat(4, 70vw);
+    
+    gap: 3vh;
+    overflow-x: scroll;
+    padding: 1vh;
+
+}
+.sideScrollOption{
+
+    width: 70vw;
+
+    height: 60vw;
+    background-color: var(--accent-color);
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5vw;
+    align-items: center;
+}
+.sideScrollOption h2{
+    font-family: milker;
+    letter-spacing: 5px;
+        font-size: 2em;
+}
+#o1{
+    background-color: var(--primary-color);
+    border: var(--secondary-color) 1px solid;
+    color: var(--secondary-color);
+}
+#o2{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#o3{
+    color: var(--primary-color);
+    background-color: var(--greyscale-color);
+}

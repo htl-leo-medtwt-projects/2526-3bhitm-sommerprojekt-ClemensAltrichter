@@ -2,74 +2,34 @@
    watchpartySwipe.css
 ═══════════════════════════════════════════ */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    font-family: 'miriam', sans-serif;
-    min-height: 100vh;
     padding-bottom: 40px;
 }
-a{
-    text-decoration: none;
-    color: inherit;
-}
 
-/* ── TITEL ──────────────────────────────── */
-.page-title {
-    font-family: 'high', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 5px;
-    text-align: center;
-    padding: 24px 20px 16px;
-    border-bottom: 1px solid var(--greyscale-color);
-}
-
-.section {
-    padding: 24px 20px 0;
-}
-
-.section-label {
-    font-family: 'milker', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--greyscale-color);
-    margin-bottom: 12px;
-}
-
-.hl {
-    background-color: var(--secondary-color);
-    width: 90%;
-    height: 2px;
-    margin: 28px auto;
-}
-
-/* ── COUNTER ROW ────────────────────────── */
+/* ── COUNTER ────────────────────────────── */
 .swipe-counter-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
-    font-family: 'milker', sans-serif;
-    font-size: 0.8rem;
+    padding: 12px var(--spacing-page);
+    font-family: milker, sans-serif;
+    font-size: 0.78rem;
     letter-spacing: 1px;
     color: var(--greyscale-color);
 }
 
-/* ── CARD AREA ──────────────────────────── */
+/* ── CARD ───────────────────────────────── */
 .card-area {
     display: flex;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 var(--spacing-page);
 }
 
 .swipe-card {
     width: 100%;
-    max-width: 340px;
+    max-width: 320px;
     border: 1px solid var(--greyscale-color);
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     background-color: var(--primary-color);
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -79,20 +39,17 @@ a{
     transform: translateX(120%) rotate(12deg);
     opacity: 0;
 }
-
 .swipe-card.fly-left {
     transform: translateX(-120%) rotate(-12deg);
     opacity: 0;
 }
 
-/* ── POSTER ─────────────────────────────── */
 .card-poster {
     width: 100%;
     aspect-ratio: 2 / 3;
     background-color: var(--greyscale-color);
     overflow: hidden;
 }
-
 .card-poster img {
     width: 100%;
     height: 100%;
@@ -100,22 +57,18 @@ a{
     display: block;
 }
 
-/* ── CARD INFO ──────────────────────────── */
-.card-info {
-    padding: 14px 16px;
-}
+.card-info { padding: 14px 16px; }
 
 .card-title {
-    font-family: 'high', sans-serif;
-    font-size: 1.2rem;
+    font-family: high, sans-serif;
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
     letter-spacing: 2px;
-    color: var(--secondary-color);
     margin-bottom: 6px;
 }
 
 .card-overview {
-    font-family: 'miriam', sans-serif;
-    font-size: 0.78rem;
+    font-family: miriam, sans-serif;
+    font-size: 0.76rem;
     color: var(--greyscale-color);
     line-height: 1.5;
     display: -webkit-box;
@@ -126,8 +79,8 @@ a{
 }
 
 .card-rating {
-    font-family: 'milker', sans-serif;
-    font-size: 0.78rem;
+    font-family: milker, sans-serif;
+    font-size: 0.76rem;
     color: var(--greyscale-color);
     letter-spacing: 1px;
 }
@@ -136,55 +89,50 @@ a{
 .swipe-btns {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    padding: 24px 20px;
+    gap: 48px;
+    padding: 24px var(--spacing-page);
 }
 
 .swipe-btn {
-    width: 68px;
-    height: 68px;
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
     border: 1px solid var(--greyscale-color);
     background-color: var(--primary-color);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s, border-color 0.2s;
 }
-
-.swipe-btn:active { transform: scale(0.92); }
+.swipe-btn:active { transform: scale(0.9); }
 
 .btn-dislike { color: var(--greyscale-color); }
-.btn-dislike:active { border-color: var(--greyscale-color); }
+.btn-like    { color: var(--accent-color); }
 
-.btn-like { color: var(--accent-color); }
-.btn-like:active { border-color: var(--accent-color); }
-
-/* ── WAITING SCREEN ─────────────────────── */
+/* ── WAITING ────────────────────────────── */
 .waiting-box {
-    padding: 40px 20px;
+    padding: 48px var(--spacing-page);
     text-align: center;
 }
 
 .waiting-text {
-    font-family: 'high', sans-serif;
-    font-size: 1.4rem;
+    font-family: high, sans-serif;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
     letter-spacing: 3px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 #doneStatus {
-    font-family: 'miriam', sans-serif;
-    font-size: 0.9rem;
+    font-family: miriam, sans-serif;
+    font-size: 0.88rem;
     color: var(--greyscale-color);
 }
 
-/* ── RESULT CARDS ───────────────────────── */
+/* ── RESULT ─────────────────────────────── */
 #winnerCard {
     border: 2px solid var(--accent-color);
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     margin-bottom: 8px;
 }
@@ -193,16 +141,16 @@ a{
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 12px 14px;
+    padding: 11px 14px;
     border: 1px solid var(--greyscale-color);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     margin-bottom: 10px;
 }
 
 .result-poster {
-    width: 48px;
-    height: 68px;
-    border-radius: 6px;
+    width: 46px;
+    height: 66px;
+    border-radius: var(--radius-sm);
     object-fit: cover;
     background-color: var(--greyscale-color);
     flex-shrink: 0;
@@ -211,14 +159,14 @@ a{
 .result-info { flex: 1; }
 
 .result-title {
-    font-family: 'high', sans-serif;
-    font-size: 0.95rem;
+    font-family: high, sans-serif;
+    font-size: 0.92rem;
     letter-spacing: 1.5px;
     margin-bottom: 4px;
 }
 
 .result-likes {
-    font-family: 'miriam', sans-serif;
-    font-size: 0.78rem;
+    font-family: miriam, sans-serif;
+    font-size: 0.75rem;
     color: var(--accent-color);
 }

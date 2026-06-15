@@ -1,184 +1,144 @@
-*,html{
-    padding: 0;
-    margin:0;
-     overflow-x: hidden;
-}
+/* ═══════════════════════════════════════════
+   profile.css
+═══════════════════════════════════════════ */
 
-body{
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    font-family: miriam;
-}
-
-#header{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    font-family: high;
-    font-size: 12vw;
-}
-
-#usernameContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5vh;
-    font-family: milker;
-    font-size: 9vw;
-}
-
-.subHeader{
-    font-family: milker;
-    font-size: 5vw;
-    margin-bottom: 3vh;
-    color: var(--greyscale-color);
-}
-
-#inviteContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5vh;
-}
-
-#friendContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-}
-
-#searchUser{
-    margin: 0 auto;
-    margin-top: 2vh;
-}
-
-.userBox{
-    width: 90vw;
-    margin: 0 auto;
-    font-family: milker;
-    color:var(--secondary-color);
-    display: flex;
-    flex-direction: row;
-    gap: 5vw;
-    align-items: center;
-    justify-content: space-between;
-    border:1px solid var(--secondary-color);
-    border-radius: 15px;
-
-}
-
-.userBox img{
-    width: 10vw;
-    border-radius: 50%;
-}
-
-.inviteBox{
-    width:10vw;
-    height: 8vw;
-    background-color: var(--accent-color);
-    border-radius: 15px;
-}
-
-input{
-    width: 90%;
-    background-color: var(--primary-color);
-    color: var(--secondary-color-color);
-    padding: 2vw;
-    border-radius: 15px;
-    font-family: miriam;
-    font-size: larger;
-    margin: 0 auto;
-}
-input::placeholder{
-    color: var(--greyscale-color);
-}
-
-input:focus {
-  outline: none;
-  border: 2px solid var(--secondary-color);
-  box-shadow: 0 4 5px black;
-}
-
-#noNotifications{
+#header {
+    font-family: high, sans-serif;
+    font-size: clamp(2.5rem, 12vw, 5rem);
     text-align: center;
+    padding: 24px var(--spacing-page) 12px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 5px;
 }
 
-#notificationsContainer{
+#usernameContainer {
+    font-family: milker, sans-serif;
+    font-size: clamp(1.4rem, 8vw, 2.2rem);
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 20px var(--spacing-page) 0;
+}
+
+/* ── NOTIFICATIONS ──────────────────────── */
+#notificationsContainer {
     display: flex;
     flex-direction: column;
-    gap: 1vh;
-    margin-bottom: 5vh;
+    gap: 10px;
+    padding: 0 var(--spacing-page);
+    margin-bottom: 8px;
 }
 
-.notificationBox{
-    padding-left: 1vw;
-    width: 90vw;
-    margin: 0 auto;
-    font-family: miriam;
-    font-size: 3vw;
-    color:var(--secondary-color);
+#noNotifications {
+    text-align: center;
+    color: var(--greyscale-color);
+    font-family: miriam, sans-serif;
+    font-size: 0.88rem;
+    padding: 12px 0;
+}
+
+.notificationBox {
     display: flex;
     flex-direction: row;
-    gap: 5vw;
     align-items: center;
     justify-content: space-between;
-    border:1px solid var(--secondary-color);
-    border-radius: 15px;
+    gap: 12px;
+    padding: 13px 14px;
+    border: 1px solid var(--greyscale-color);
+    border-radius: var(--radius-md);
+    font-family: miriam, sans-serif;
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+    transition: opacity 0.3s ease;
 }
 
-.BTNContainer{
+.BTNContainer {
     display: flex;
     flex-direction: row;
-    gap: 1vw;
+    gap: 8px;
+    flex-shrink: 0;
 }
 
-.acceptBTN{
-    width: 10vw;
-      height: 8vw;;
-    background-color: var(--accent-color);
-    border-radius: 10px;
+.acceptBTN,
+.declineBTN {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-.declineBTN{
-    height: 8vw;
-    width: 10vw;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
+.acceptBTN { background-color: var(--accent-color); }
+.acceptBTN:active { background-color: #a81f1a; }
+
+.declineBTN { background-color: var(--greyscale-color); }
+.declineBTN:active { background-color: #555; }
+
+/* ── FRIENDS ────────────────────────────── */
+#inviteContainer {
+    padding: 0 var(--spacing-page);
+    margin-bottom: 8px;
 }
 
-#footerButtonContainer{
-    width: 100vw;
-    height: 10vh;
+#friendContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5vw;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.footerBTN{
-    width: 30vw;
-    height: 8vh;
-    font-family: high;
-    font-size: 10vw;
+.userBox {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    border-radius: 15px;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--greyscale-color);
+    border-radius: var(--radius-md);
+    font-family: milker, sans-serif;
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    letter-spacing: 1px;
 }
 
-#deleteBTN{
+.userBox img,
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.userBox span,
+.userBox h2 {
+    flex: 1;
+    font-family: milker, sans-serif;
+    font-size: inherit;
+    font-weight: normal;
+}
+
+.inviteBox {
+    width: 38px;
+    height: 38px;
     background-color: var(--accent-color);
-    color: var(--secondary-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.inviteBox:active { background-color: #a81f1a; }
+
+#noFriends {
+    text-align: center;
+    color: var(--greyscale-color);
+    font-family: miriam, sans-serif;
+    font-size: 0.88rem;
+    padding: 12px 0;
 }
 
-#logoutBTN{
-    background-color: var(--primary-color);
-    border: 2px solid var(--secondary-color);
-    color: var(--secondary-color);
+/* ── SEARCH ─────────────────────────────── */
+#searchUser {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
 }
 
-/* ── USER SUCHE ─────────────────────────── */
 #searchResults {
     display: flex;
     flex-direction: column;
@@ -190,20 +150,20 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px;
+    padding: 11px 14px;
     border: 1px solid var(--greyscale-color);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
 }
 
 .searchUsername {
-    font-family: 'milker', sans-serif;
+    font-family: milker, sans-serif;
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
 
 .addFriendBtn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: transparent;
     border: 1px solid var(--greyscale-color);
@@ -213,17 +173,52 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color 0.2s, color 0.2s;
 }
-
 .addFriendBtn:active {
     border-color: var(--accent-color);
     color: var(--accent-color);
 }
 
 .noResults {
-    font-family: 'miriam', sans-serif;
+    font-family: miriam, sans-serif;
     font-size: 0.82rem;
     color: var(--greyscale-color);
     padding: 8px 0;
+}
+
+/* ── FOOTER BUTTONS ─────────────────────── */
+#footerButtonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px var(--spacing-page) 40px;
+}
+
+.footerBTN {
+    flex: 1;
+    max-width: 160px;
+    padding: 15px;
+    font-family: high, sans-serif;
+    font-size: clamp(1rem, 5vw, 1.3rem);
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+#deleteBTN {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+}
+#deleteBTN:active { background-color: #a81f1a; }
+
+#logoutBTN {
+    background-color: transparent;
+    border: 1px solid var(--greyscale-color);
+    color: var(--secondary-color);
+}
+#logoutBTN:active {
+    border-color: var(--secondary-color);
 }
